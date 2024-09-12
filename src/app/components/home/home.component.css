@@ -1,0 +1,83 @@
+/* src/app/bienvenido/bienvenido.component.css */
+
+.bienvenido-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.bienvenido-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.mensaje-bienvenida {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.acciones-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.accion-boton {
+    /* background-color: #007bff; */
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.accion-boton:hover {
+    transform: scale(1.05);
+}
+
+.accion-boton:focus {
+    outline: none;
+}
+
+/* Colores para los botones */
+
+.btn_quiensoy {
+    background-color: #00ffbf;
+}
+
+.btn_quiensoy:hover {
+    background-color: #00e6b8;
+}
+
+.btn_quiensoy:focus {
+    box-shadow: 0 0 0 3px rgba(0, 255, 191, 0.5);
+}
+
+
+.btn_login {
+    background-color: #007bff;
+}
+
+.btn_login:focus {
+    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
+}
+
+.btn_login:hover {
+    background-color: #0056b3;
+}

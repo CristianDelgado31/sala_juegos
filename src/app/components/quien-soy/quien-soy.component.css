@@ -1,0 +1,120 @@
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+/* Contenedor principal */
+.alumno-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  max-width: 850px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón "Inicio" */
+.home-button-container {
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Sección de imagen */
+.image-section {
+  margin-bottom: 30px;
+}
+
+.alumno-image {
+  max-width: 180px;
+  border-radius: 50%;
+  border: 3px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de información */
+.info-section {
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 24px;
+  color: #555;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 20px;
+  color: #666;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+p {
+  font-size: 18px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+ul {
+  text-align: left;
+  margin-left: 40px;
+}
+
+strong {
+  color: #000;
+  font-weight: bold;
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .alumno-image {
+    max-width: 150px;
+  }
+
+  .home-button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
