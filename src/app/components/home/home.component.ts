@@ -27,13 +27,14 @@ export class HomeComponent implements OnInit {
       console.log('Usuario logueado');
       try {
         const user = JSON.parse(this.userInLocalStorage);
-        this.email = user.email; // Asegúrate de que 'email' esté definido en el JSON
+        this.email = user.email.split('@')[0]; // Solo toma la parte antes del '@'
         this.title = `¡Bienvenido \n${this.email}!`;
       } catch (error) {
         console.error('Error al parsear el usuario de localStorage:', error);
       }
     }
-  }
+}
+
 
   logOut(): void {
     localStorage.removeItem('user');
