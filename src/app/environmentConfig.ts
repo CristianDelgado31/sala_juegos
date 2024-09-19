@@ -1,1 +1,0 @@
-export const environmentConfig = {"projectId":"muestrahosting-77e1e","appId":"1:490264029325:web:da9d3d51f03b0cf3df5ac4","storageBucket":"muestrahosting-77e1e.appspot.com","apiKey":"AIzaSyAZ3RTfIv8FjXLeCvu98J32Iw_wD3OoejY","authDomain":"muestrahosting-77e1e.firebaseapp.com","messagingSenderId":"490264029325"}
