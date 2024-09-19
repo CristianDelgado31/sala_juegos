@@ -1,15 +1,17 @@
-<!-- src/app/bienvenido/bienvenido.component.html -->
 <section class="bienvenido-section">
-    <div class="bienvenido-container">
-      <h1>¡Bienvenido!</h1>
-      <p class="mensaje-bienvenida">
-        Nos alegra verte de nuevo. ¿Cómo podemos ayudarte hoy?
-      </p>
-      <div class="acciones-container">
-        <!-- Esto de calculadora esta demas solo iria lo de login -->
-        <button [routerLink]="['/quien-soy']" class="accion-boton btn_quiensoy">Quien soy</button>
+  <div class="bienvenido-container">
+    <h1>{{title}}</h1>
+    
+    <div class="acciones-container">
+      <button [routerLink]="['/quien-soy']" class="accion-boton btn_quiensoy">Quien soy</button>
+      <ng-container *ngIf="userInLocalStorage == null; else loggedIn">
         <button [routerLink]="['/login']" class="accion-boton btn_login">Login</button>
-
-      </div>
+        <button [routerLink]="['/registro']" class="accion-boton btn_registro">Registro</button>
+      </ng-container>
+      <ng-template #loggedIn>
+        <button [routerLink]="['/juegos']" class="accion-boton btn_juegos">Juegos</button>
+        <button (click)="logOut()" class="accion-boton btn_logout">Logout</button>
+      </ng-template>
     </div>
-  </section>
+  </div>
+</section>

@@ -1,22 +1,29 @@
-<!-- src/app/login/login.component.html -->
-<!-- Puedo agregar un boton de volver a home acá -->
 <section class="login-section">
-    <div class="login-container">
-      <h1>Login</h1>
-      <form (ngSubmit)="onLogin()" class="login-form">
-        <div class="form-group">
-          <label for="nombre">Usuario:</label>
-          <input id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required autocomplete="username">
-        </div>
-  
-        <div class="form-group">
-          <label for="clave">Clave:</label>
-          <input id="clave" [(ngModel)]="usuario.clave" name="clave" type="password" required autocomplete="current-password">
-        </div>
-  
-        <div class="form-group">
-          <button type="submit">Login</button>
-        </div>
-      </form>
+  <div class="login-container">
+    <!-- Botón para volver a la página de inicio -->
+    <button class="back-home-button" routerLink="home" >Volver a Home</button>
+    
+    <h1>Login</h1>
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <div class="form-group">
+        <label for="Email">Email:</label>
+        <input id="email" [(ngModel)]="email" name="email" required autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="clave">Clave:</label>
+        <input id="clave" [(ngModel)]="password" name="password" type="password" required autocomplete="current-password">
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn_login">Login</button>
+      </div>
+    </form>
+
+    <!-- Botones de acceso rápido -->
+    <div class="quick-login-buttons">
+      <button (click)="quickLogin('pepe@gmail.com', 'pepe123')">Login como Pepe</button>
+      <button (click)="quickLogin('romeo@gmail.com', 'Romeo123')">Login como Romeo</button>
     </div>
-  </section>
+  </div>
+</section>

@@ -1,5 +1,5 @@
-/* Estilos generales para la sección de inicio de sesión */
-.login-section {
+/* Estilos generales para la sección de registro */
+.registro-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,15 +11,15 @@
   background-position: center; /* Centrar la imagen */
 }
 
-/* Estilos del contenedor del formulario de inicio de sesión */
-.login-container {
+/* Estilos del contenedor del formulario de registro */
+.registro-container {
   background: #fff;
-  padding: 4.5rem;
+  padding: 5rem;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   max-width: 350px;
-  width: 92%;
-  margin-top: 60px; /* Añadir margen superior */
+  width: 100%;
+  margin-top: 60px; /* Añadir margen superior para evitar solapamiento */
 }
 
 /* Títulos */
@@ -31,7 +31,7 @@ h1 {
 }
 
 /* Estilos para el formulario */
-.login-form {
+.registro-form {
   display: flex;
   flex-direction: column; /* Disposición vertical */
 }
@@ -68,7 +68,7 @@ label {
 
 /* Botones del formulario */
 .form-group button {
-  padding: 0.8rem 9.7rem; /* Espaciado */
+  padding: 0.8rem 7rem; /* Espaciado */
 }
 
 /* Estilo general de los botones */
@@ -89,23 +89,6 @@ button {
 button:hover {
   background-color: #0056b3; /* Color más oscuro */
   transform: translateY(-2px); /* Efecto de levantamiento */
-}
-
-/* Estilo de los botones de acceso rápido */
-.quick-login-buttons {
-  margin-top: 1.5rem; /* Espacio superior */
-  display: flex; /* Flex para disposición horizontal */
-  justify-content: space-between; /* Espacio entre botones */
-}
-
-/* Botones de acceso rápido */
-.quick-login-buttons button {
-  background-color: #28a745; /* Color de fondo */
-  padding: 0.8rem 1.5rem; /* Espaciado */
-  flex: 1; /* Crece para llenar el espacio */
-  margin: 0 0.5rem; /* Margen lateral */
-  font-size: 0.9rem;
-  border-radius: 6px; /* Bordes redondeados */
 }
 
 /* Estilos para el botón de "volver a casa" */
@@ -130,22 +113,29 @@ button:hover {
   color: #0056b3;
 }
 
-/* Responsividad */
+.error-message {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Media queries para hacer el diseño responsivo */
 @media (max-width: 768px) {
-  .login-container {
-    padding: 3rem; /* Menos padding en dispositivos más pequeños */
+  .registro-container {
+    padding: 3rem; /* Menos padding en pantallas pequeñas */
+    margin-top: 40px; /* Menor margen superior */
   }
-  
+
   h1 {
     font-size: 1.8rem; /* Tamaño de fuente más pequeño */
   }
 
-  .form-group button {
-    padding: 0.8rem 8rem; /* Ajustar el tamaño del botón */
-  }
-
   .form-group input {
     width: 92%;
-    padding: 0.8rem 0.72rem;
+    padding: 0.8rem 0.7rem;
+  }
+
+  .form-group button {
+    padding: 0.8rem 9rem; /* Ajustar el tamaño del botón */
   }
 }
