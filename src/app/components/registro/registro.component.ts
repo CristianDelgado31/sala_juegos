@@ -19,6 +19,7 @@ export class RegistroComponent implements OnInit{
   email!: string;
   password!: string;
   errorMessage: string = '';
+  loading: boolean = false;
 
   constructor(public auth: Auth, private router: Router) { }
 
@@ -31,8 +32,10 @@ export class RegistroComponent implements OnInit{
   onSubmit(registroForm: any) {
     this.user = new User(this.email, this.password);
     this.errorMessage = ''; // Reiniciar mensaje de error
+    this.loading = true; // Activar el spinner
 
     createUserWithEmailAndPassword(this.auth, this.user.getEmail(), this.user.getPassword()).then((userCredential) => {
+      this.loading = false; // Desactivar el spinner
       if (userCredential.user) {
         console.log('Usuario creado con éxito');
         localStorage.setItem('user', JSON.stringify({email: userCredential.user.email}));
@@ -40,10 +43,12 @@ export class RegistroComponent implements OnInit{
       }
 
     }).catch((error) => {
-      // Limpiar el formulario
-      this.email = '';
-      this.password = '';
-      registroForm.reset(); // Reiniciar el formulario
+      this.loading = false; // Desactivar el spinner
+
+      // // Limpiar el formulario
+      // this.email = '';
+      // this.password = '';
+      // registroForm.reset(); // Reiniciar el formulario
       
       switch (error.code) {
         case 'auth/email-already-in-use':
@@ -53,7 +58,8 @@ export class RegistroComponent implements OnInit{
           this.errorMessage = 'El email no es válido';
           break;
         case 'auth/weak-password':
-          this.errorMessage = 'La contraseña es débil';
+          this.errorMessage = 'La contraseña tiene que tener al menos 6 caracteres';
+          this.password = '';
           break;
         default:
           this.errorMessage = 'Error desconocido';

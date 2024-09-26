@@ -1,8 +1,5 @@
 <section class="login-section">
   <div class="login-container">
-    <!-- Botón para volver a la página de inicio -->
-    <button class="back-home-button" routerLink="home" >Volver a Home</button>
-    
     <h1>Login</h1>
     <form (ngSubmit)="onLogin()" class="login-form">
       <div class="form-group">
@@ -24,6 +21,11 @@
     <div class="quick-login-buttons">
       <button (click)="quickLogin('pepe@gmail.com', 'pepe123')">Login como Pepe</button>
       <button (click)="quickLogin('romeo@gmail.com', 'Romeo123')">Login como Romeo</button>
+    </div>
+
+    <!-- Enlace para registro -->
+    <div class="register-link">
+      <p>No tienes cuenta? <a [routerLink]="['/registro']">Regístrate aquí</a></p>
     </div>
   </div>
 </section>

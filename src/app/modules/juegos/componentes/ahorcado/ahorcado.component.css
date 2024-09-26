@@ -1,0 +1,161 @@
+.ahorcado-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
+    min-height: calc(100vh - 100px); /* Espacio para el footer */
+    margin: 20px; 
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradiente de dos colores */
+    padding: 20px; /* Padding uniforme */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Limitar el ancho del contenedor en móviles */
+    margin: auto; /* Centrar el contenedor */
+}
+
+h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+    font-size: 2rem; /* Tamaño de fuente uniforme */
+}
+
+h2 {
+    color: #495057;
+    margin: 15px 0;
+    font-size: 1.5rem; /* Tamaño de fuente uniforme */
+    text-align: center; /* Centrar el texto del h2 */
+}
+
+select {
+    padding: 10px;
+    font-size: 1rem; /* Tamaño de fuente uniforme */
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    outline: none;
+    width: 100%; /* Hacer que el selector ocupe todo el ancho */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem; /* Tamaño de fuente uniforme */
+    transition: background-color 0.3s;
+    margin: 5px;
+    width: 100%; /* Hacer que el botón ocupe todo el ancho */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.botones-letras {
+    margin: 20px 0;
+    display: flex; /* Usar flex para alinear los botones */
+    flex-wrap: wrap; /* Permitir que los botones se envuelvan */
+    justify-content: center; /* Centrar los botones */
+}
+
+.letra-boton {
+    background-color: #1e231f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 20%; /* Ancho relativo para permitir que se ajusten */
+    height: 50px; /* Altura fija para las letras */
+    font-size: 1.5rem; /* Tamaño de fuente uniforme para las letras */
+}
+
+.letra-boton:hover {
+    background-color: #218838;
+}
+
+.ahorcado-dibujo {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Centrar la imagen */
+}
+
+.muñeco {
+    width: 100%; /* Ajustar al ancho del contenedor */
+    max-width: 200px; /* Limitar el tamaño máximo */
+    height: auto;
+}
+
+.mensaje {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #dc3545; /* Color rojo por defecto */
+}
+
+.mensaje-victoria {
+    color: #1ca53c; /* Color verde para mensajes de victoria */
+}
+
+.mensaje-perdido {
+    color: #dc3545; /* Color rojo para mensajes de derrota (opcional, ya está definido) */
+}
+
+
+.boton-reintentar {
+    background-color: #ffc107; /* Color amarillo para el botón de reintentar */
+    color: black;
+    margin: 10px 0; /* Margen vertical para separar del resto */
+    width: 100%; /* Hacer que el botón ocupe todo el ancho */
+}
+
+.boton-reintentar-container {
+    display: flex;
+    justify-content: center; /* Centrar el botón */
+    margin-top: 20px; /* Espaciado superior */
+}
+
+.palabra {
+    margin: 20px 0; /* Espacio vertical */
+}
+
+.letra {
+    font-size: 2rem; /* Tamaño de fuente */
+    margin: 0 10px; /* Espacio horizontal entre letras */
+    display: inline-block; /* Para que el margen funcione correctamente */
+    width: 20px; /* Ancho fijo para mantener la alineación */
+    text-align: center; /* Centrar texto en cada letra */
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem; /* Reducir tamaño de fuente en móviles */
+    }
+
+    h2 {
+        font-size: 1.25rem; /* Reducir tamaño de fuente en móviles */
+    }
+
+    .letra-boton {
+        width: 25%; /* Ajustar el ancho de los botones en móviles */
+    }
+    
+    .letra {
+        font-size: 1.5rem; /* Tamaño de fuente más pequeño para letras */
+    }
+
+    /* .boton-reintentar{
+        width: 45% !important;
+    } */
+}
+
+/* .boton-reintentar {
+    background-color: #ffc107;
+    color: black;
+    margin: 10px 0;
+    width: 15%;
+} */

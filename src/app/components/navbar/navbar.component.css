@@ -1,0 +1,112 @@
+.navbar {
+    background-color: #343a40; /* Color de fondo */
+    padding: 1rem; /* Espaciado interno */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.navbar-container {
+    display: flex; /* Disposición horizontal */
+    justify-content: space-between; /* Espaciado igual entre los extremos */
+    align-items: center; /* Centrar verticalmente */
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar en la página */
+}
+
+.navbar-brand a {
+    color: #ffc107; /* Color de la marca */
+    font-size: 1.5rem; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    text-decoration: none; /* Quitar subrayado */
+}
+
+.navbar-list {
+    list-style-type: none; /* Quitar puntos de lista */
+    display: flex; /* Disposición horizontal */
+    gap: 2rem; /* Espacio entre elementos */
+}
+
+.navbar-list li {
+    display: flex; /* Asegurar que los elementos se alineen */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.navbar-list a {
+    color: white; /* Color de texto */
+    text-decoration: none; /* Quitar subrayado */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    transition: color 0.3s; /* Transición suave */
+}
+
+.navbar-list a:hover {
+    color: #ffc107; /* Color al pasar el mouse */
+}
+
+.logout-button {
+    background-color: #dc3545; /* Color de fondo para logout */
+    color: white; /* Color de texto */
+    border: none; /* Sin borde */
+    padding: 0.5rem 1rem; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+    font-size: 1rem; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.logout-button:hover {
+    background-color: #c82333; /* Color de fondo al pasar el mouse */
+}
+
+.hamburger {
+    display: none; /* Ocultar por defecto */
+    font-size: 2rem; /* Tamaño del icono */
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    color: white; /* Color del icono */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .navbar {
+        background-color: #343a40; /* Color de fondo */
+        padding: 1rem; /* Espaciado interno */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+        position: sticky; /* Mantiene el navbar en su posición hasta que se desplaza */
+        top: 0; /* Se queda en la parte superior */
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    }
+    
+
+    .navbar-list {
+        display: none; /* Ocultar la lista por defecto en móviles */
+        flex-direction: column; /* Cambiar a disposición vertical */
+        width: 100%; /* Ancho completo */
+        position: absolute; /* Posicionamiento absoluto */
+        top: 60px; /* Ajustar la posición */
+        left: 0; /* Alinear a la izquierda */
+        background-color: #343a40; /* Fondo */
+        z-index: 1000; /* Asegurarse de que esté por encima */
+        gap: 0.3rem; /* Espacio entre elementos */
+    }
+
+    .navbar-list.active {
+        display: flex; /* Mostrar la lista si está activa */
+    }
+
+    .navbar-list li {
+        width: 100%; /* Ancho completo para los elementos en móviles */
+        text-align: center; /* Centrar el texto */
+        padding: 1rem 0; /* Espaciado interno para cada elemento */
+    }
+
+    .logout-button {
+        width: 30%; /* Hacer que el botón ocupe el ancho completo */
+        padding: 0.7rem; /* Aumentar el padding para que se vea proporcional */
+        font-size: 1rem; /* Asegurar un tamaño de fuente consistente */
+        border-radius: 0; /* Quitar bordes redondeados para que sea más plano */
+    }
+
+    .hamburger {
+        display: block; /* Mostrar el botón en móviles */
+    }
+}

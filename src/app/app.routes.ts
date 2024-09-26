@@ -10,7 +10,10 @@ export const routes: Routes = [
     { path: 'login', title: 'Login', component: LoginComponent },
     { path: 'quien-soy', title: 'Quien soy', component: QuienSoyComponent },
     { path: 'registro', title: 'Registro', component: RegistroComponent },
-    
+    {
+        path: 'juegos',
+        loadChildren: () => import('./modules/juegos/juegos.module').then(m => m.JuegosModule)
+    },
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'home' }

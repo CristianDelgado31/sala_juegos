@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { User } from '../../models/user';
-import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc} from '@angular/fire/firestore';
+import { User } from '../../models/user';import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc} from '@angular/fire/firestore';
+
 import { Subscription } from 'rxjs';
 import { signInWithEmailAndPassword, Auth, signOut } from '@angular/fire/auth';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   public countLogins: number = 0;
   private sub!: Subscription;
 
-  constructor(private router: Router, private firestore: Firestore, public auth: Auth) {
+  constructor(private router: Router, private firestore: Firestore, public auth: Auth, private userService: UserService) {
 
   }
 
@@ -32,20 +33,18 @@ export class LoginComponent implements OnInit {
     }
   }
   onLogin(): void {
-    // Aquí puedes manejar el login, por ejemplo, validando el usuario
-    // console.log('Login realizado con:', this.usuario);
-
     this.user = new User(this.email, this.password);
-
-    signInWithEmailAndPassword(this.auth, this.user.getEmail(), this.user.getPassword()).then((response) => {
-      localStorage.setItem('user', JSON.stringify({ email: this.auth.currentUser?.email })); // guardar el email del usuario en el localstorage
-      this.router.navigate(['/home']);
-      this.logUsuarios();
-
-    }).catch((error) => {
-      console.log('Error:', error);
-    });
-
+  
+    signInWithEmailAndPassword(this.auth, this.user.getEmail(), this.user.getPassword())
+      .then((response) => {
+        localStorage.setItem('user', JSON.stringify({ email: this.auth.currentUser?.email }));
+        this.userService.login(); // Notificar al servicio de usuario
+        this.router.navigate(['/home']);
+        this.logUsuarios();
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
   }
 
   // CloseSession(): void {

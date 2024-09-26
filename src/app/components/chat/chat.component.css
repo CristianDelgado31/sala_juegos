@@ -1,0 +1,131 @@
+.chat-icon {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    background-color: #28a745; /* Color verde */
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.chat-icon:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el mouse */
+    transform: scale(1.1);
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 400px; /* Altura ajustable */
+    width: 350px; /* Ancho ajustable */
+    border-radius: 8px;
+    position: fixed;
+    bottom: 80px; /* Posiciona el chat encima del ícono */
+    right: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 999;
+}
+
+.chat-header {
+    background-color: #007a33; /* Color similar a WhatsApp */
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between; /* Para alinear el título y el botón de cerrar */
+    align-items: center; /* Centra verticalmente */
+}
+
+.chat-header h2 {
+    margin: 0; /* Elimina el margen por defecto */
+    font-size: 1.2em; /* Tamaño de fuente */
+}
+
+.close-chat {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #e5ddd5; /* Fondo gris claro similar al de WhatsApp */
+}
+
+.message {
+    margin: 5px 0;
+    max-width: 80%; /* Limitar el ancho de los mensajes */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px;
+    position: relative; /* Para el posicionamiento del pseudo-elemento */
+}
+
+.my-message {
+    background-color: #dcf8c6; /* Color de fondo de los mensajes del usuario */
+    margin-left: auto; /* Alinear a la derecha */
+}
+
+.other-message {
+    background-color: #ffffff; /* Color de fondo de los mensajes de otros usuarios */
+}
+
+.sender {
+    font-weight: bold;
+    color: #333; /* Color del nombre del remitente */
+}
+
+.text {
+    display: block; /* Asegurarse de que el texto ocupe todo el ancho */
+    color: #000; /* Color del texto del mensaje */
+}
+
+.timestamp {
+    font-size: 0.8em; /* Tamaño de fuente más pequeño para la fecha/hora */
+    color: #999; /* Color gris claro para la fecha/hora */
+    position: absolute; /* Para posicionar en la parte inferior derecha */
+    bottom: 5px;
+    right: 10px; /* Separación desde el borde derecho */
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd; /* Borde superior más claro */
+    background-color: #ffffff; /* Fondo blanco */
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Bordes redondeados */
+    font-size: 1em; /* Tamaño de la fuente */
+}
+
+.chat-input button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #007a33; /* Color similar a WhatsApp */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-input button:hover {
+    background-color: #005e29; /* Verde más oscuro al pasar el mouse */
+}

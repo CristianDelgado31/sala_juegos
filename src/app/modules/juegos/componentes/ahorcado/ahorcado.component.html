@@ -1,0 +1,49 @@
+<div class="ahorcado-container">
+    <h1>Juego del Ahorcado</h1>
+
+    <div *ngIf="!juegoIniciado">
+        <h2>Selecciona un Tópico:</h2>
+        <select [(ngModel)]="topicoSeleccionado" (change)="seleccionarPalabra()">
+            <option value="">Elige un Tópico</option>
+            <option value="animales">Animales</option>
+            <option value="frutas">Frutas</option>
+            <option value="paises">Países</option>
+            <option value="deportes">Deportes</option>
+        </select>
+        <button (click)="iniciarJuego()" [disabled]="!topicoSeleccionado">Iniciar Juego</button>
+    </div>
+
+    <div *ngIf="juegoIniciado">
+        <!-- <button (click)="reiniciarJuego()" class="boton-reintentar">
+            Reiniciar Juego
+        </button> -->
+        <div class="ahorcado-dibujo">
+            <img [src]="getImagen()" alt="Ahorcado" class="muñeco" />
+        </div>
+
+        <div class="palabra">
+            <h2>
+                <span *ngFor="let letra of palabraActual.split('')" class="letra">
+                    <ng-container *ngIf="letraAdivinada(letra)">{{ letra }}</ng-container>
+                    <ng-container *ngIf="!letraAdivinada(letra)">_</ng-container>
+                </span>
+            </h2>
+        </div>
+        
+
+        <div class="botones-letras">
+            <button *ngFor="let letra of alfabeto" (click)="adivinarLetra(letra)" class="letra-boton">{{ letra }}</button>
+        </div>
+
+        <div class="mensaje" [ngClass]="{'mensaje-victoria': gano, 'mensaje-perdido': perdio}" *ngIf="mensaje">
+            {{ mensaje }}
+        </div>        
+
+        <div class="boton-reintentar-container" *ngIf="perdio || gano">
+            <button (click)="reiniciarJuego()" class="boton-reintentar">
+                {{ perdio ? 'Reintentar' : 'Volver a Jugar' }}
+            </button>
+        </div>
+
+    </div>
+</div>

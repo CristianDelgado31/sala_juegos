@@ -1,6 +1,5 @@
 <section class="registro-section">
     <div class="registro-container">
-        <button class="btn-home back-home-button" routerLink="home">Volver a Home</button>
         <h1>Registro de Usuario</h1>
         <form (ngSubmit)="onSubmit(registroForm)" #registroForm="ngForm" class="registro-form">
             <div class="form-group">
@@ -13,8 +12,13 @@
                 <input type="password" [(ngModel)]="password" id="contrasena" name="contrasena" required autocomplete="new-password">
             </div>
         
-            <button type="submit" [disabled]="!registroForm.valid">Registrar</button>
-        
+            <button type="submit" [disabled]="loading || !registroForm.valid">Registrar</button>
+
+            <!-- Spinner -->
+            <div *ngIf="loading" class="spinner">
+                <div class="loader"></div>
+            </div>
+
             <!-- Mensaje de error -->
             <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
         </form>

@@ -1,0 +1,27 @@
+.footer {
+    background-color: #343a40; /* Color de fondo */
+    color: white; /* Color de texto */
+    padding: 1rem; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    position: relative; /* Posición relativa para futuros ajustes */
+}
+
+.footer-container {
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar en la página */
+}
+
+.footer-link {
+    color: white; /* Color del enlace */
+    text-decoration: none; /* Quitar subrayado */
+    transition: color 0.3s; /* Transición suave */
+}
+
+.footer-link:hover {
+    color: #ffc107; /* Color al pasar el mouse */
+}
+
+.footer-link i {
+    margin-right: 0.5rem; /* Espacio entre el ícono y el texto */
+    font-size: 1.2rem; /* Tamaño del ícono */
+}

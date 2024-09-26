@@ -1,0 +1,15 @@
+<div class="mayor-menor-container">
+  <h1>¿Mayor o Menor?</h1>
+  <div class="carta-container">
+    <img [src]="'images/cartas/' + cartaActual" alt="Carta Actual" class="carta"/>
+  </div>
+
+  <div class="botones">
+    <button (click)="verificarSeleccion('mayor')" class="boton">Mayor</button>
+    <span>¿o?</span>
+    <button (click)="verificarSeleccion('menor')" class="boton">Menor</button>
+  </div>
+
+  <div class="mensaje">{{ mensaje }}</div>
+  <div class="puntos">Puntos: {{ puntos }}</div>
+</div>

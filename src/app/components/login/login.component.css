@@ -108,27 +108,20 @@ button:hover {
   border-radius: 6px; /* Bordes redondeados */
 }
 
-/* Estilos para el botón de "volver a casa" */
-.back-home-button {
-  position: absolute; /* Mantiene su posición relativa al contenedor */
-  top: 20px;
-  left: 20px;
-  background-color: #f8f9fa;
-  color: #007bff;
-  border: 1px solid #007bff;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s, color 0.3s;
-  z-index: 10; /* Asegúrate de que esté por encima del contenido */
+.register-link {
+  margin-top: 20px;
+  text-align: center; /* Centra el texto */
 }
 
-/* Efectos hover en el botón de "volver a casa" */
-.back-home-button:hover {
-  background-color: #e9ecef;
-  color: #0056b3;
+.register-link a {
+  color: #007bff; /* Color azul para el enlace */
+  text-decoration: none; /* Sin subrayado */
 }
+
+.register-link a:hover {
+  text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
 
 /* Responsividad */
 @media (max-width: 768px) {

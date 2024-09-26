@@ -1,0 +1,18 @@
+html, body {
+    height: 100%; /* Asegura que el cuerpo ocupa toda la altura */
+    margin: 0; /* Elimina márgenes */
+}
+
+:host {
+    display: flex;
+    flex-direction: column; /* Alinea los hijos en columna */
+    min-height: 100vh; /* Ocupa al menos la altura de la ventana */
+}
+
+router-outlet {
+    flex: 1; /* Permite que el contenido del router crezca y empuje el footer hacia abajo */
+}
+
+/* .router-outlet{
+    background-color: red;
+} */
