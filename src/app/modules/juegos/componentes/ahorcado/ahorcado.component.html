@@ -14,9 +14,6 @@
     </div>
 
     <div *ngIf="juegoIniciado">
-        <!-- <button (click)="reiniciarJuego()" class="boton-reintentar">
-            Reiniciar Juego
-        </button> -->
         <div class="ahorcado-dibujo">
             <img [src]="getImagen()" alt="Ahorcado" class="muñeco" />
         </div>
@@ -29,15 +26,10 @@
                 </span>
             </h2>
         </div>
-        
 
-        <div class="botones-letras">
-            <button *ngFor="let letra of alfabeto" (click)="adivinarLetra(letra)" class="letra-boton">{{ letra }}</button>
-        </div>
-
-        <div class="mensaje" [ngClass]="{'mensaje-victoria': gano, 'mensaje-perdido': perdio}" *ngIf="mensaje">
+        <div class="mensaje" [ngClass]="{'mensaje-victoria': gano, 'mensaje-perdido': perdio}" *ngIf="mensaje" style="text-align: center;">
             {{ mensaje }}
-        </div>        
+        </div>
 
         <div class="boton-reintentar-container" *ngIf="perdio || gano">
             <button (click)="reiniciarJuego()" class="boton-reintentar">
@@ -45,5 +37,15 @@
             </button>
         </div>
 
+        <div class="botones-letras">
+            <button 
+                *ngFor="let letra of alfabeto" 
+                (click)="adivinarLetra(letra)" 
+                class="letra-boton" 
+                [ngClass]="{'letra-correcta': letraAdivinada(letra) && palabraActual.includes(letra), 'letra-incorrecta': letraAdivinada(letra) && !palabraActual.includes(letra)}"
+                [disabled]="letraAdivinada(letra)">
+                {{ letra }}
+            </button>
+        </div>
     </div>
 </div>

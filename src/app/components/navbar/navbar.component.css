@@ -1,7 +1,11 @@
 .navbar {
-    background-color: #343a40; /* Color de fondo */
-    padding: 1rem; /* Espaciado interno */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+    background: linear-gradient(135deg, #2a2a2a, #4b4b4b); /* Fondo degradado */
+    padding: 1rem 2rem; /* Espaciado interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    position: sticky; /* Fijo en la parte superior al desplazarse */
+    top: 0; /* Mantener en la parte superior */
+    z-index: 1000; /* Por encima de otros elementos */
+    transition: background 0.3s; /* Transición suave del fondo */
 }
 
 .navbar-container {
@@ -12,11 +16,28 @@
     margin: 0 auto; /* Centrar en la página */
 }
 
-.navbar-brand a {
+.navbar-brand {
+    display: flex; /* Alinear ícono y texto */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.brand-link {
     color: #ffc107; /* Color de la marca */
-    font-size: 1.5rem; /* Tamaño de fuente */
+    font-size: 3.5rem; /* Tamaño de fuente */
     font-weight: bold; /* Negrita */
     text-decoration: none; /* Quitar subrayado */
+    display: flex; /* Centrar ícono y texto */
+    align-items: center; /* Centrar verticalmente */
+    transition: color 0.3s, transform 0.3s; /* Transición suave */
+}
+
+.brand-link:hover {
+    color: #ffca2c; /* Color más claro al pasar el mouse */
+    transform: scale(1.1); /* Efecto de zoom más fuerte al pasar el mouse */
+}
+
+.brand-link i {
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
 }
 
 .navbar-list {
@@ -34,26 +55,45 @@
     color: white; /* Color de texto */
     text-decoration: none; /* Quitar subrayado */
     font-size: 1.2rem; /* Tamaño de fuente */
+    position: relative; /* Para el pseudo-elemento */
     transition: color 0.3s; /* Transición suave */
+}
+
+.navbar-list a::after {
+    content: '';
+    display: block;
+    height: 2px; /* Altura de la línea */
+    background: #ffc107; /* Color de la línea */
+    width: 0; /* Ancho inicial */
+    transition: width 0.3s; /* Transición del ancho */
+    position: absolute;
+    bottom: -5px; /* Posición de la línea */
+    left: 50%; /* Centro horizontalmente */
+    transform: translateX(-50%); /* Centrar la línea */
 }
 
 .navbar-list a:hover {
     color: #ffc107; /* Color al pasar el mouse */
 }
 
+.navbar-list a:hover::after {
+    width: 100%; /* Ancho completo al pasar el mouse */
+}
+
 .logout-button {
     background-color: #dc3545; /* Color de fondo para logout */
     color: white; /* Color de texto */
     border: none; /* Sin borde */
-    padding: 0.5rem 1rem; /* Espaciado interno */
+    padding: 0.7rem 1.5rem; /* Espaciado interno */
     border-radius: 5px; /* Bordes redondeados */
     cursor: pointer; /* Cambiar cursor al pasar el mouse */
     font-size: 1rem; /* Tamaño de fuente */
-    transition: background-color 0.3s; /* Transición suave */
+    transition: background-color 0.3s, transform 0.2s; /* Transición suave */
 }
 
 .logout-button:hover {
     background-color: #c82333; /* Color de fondo al pasar el mouse */
+    transform: scale(1.05); /* Efecto de aumento */
 }
 
 .hamburger {
@@ -68,14 +108,8 @@
 /* Estilos responsive */
 @media (max-width: 768px) {
     .navbar {
-        background-color: #343a40; /* Color de fondo */
-        padding: 1rem; /* Espaciado interno */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
-        position: sticky; /* Mantiene el navbar en su posición hasta que se desplaza */
-        top: 0; /* Se queda en la parte superior */
-        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        padding: 1rem; /* Espaciado interno en móviles */
     }
-    
 
     .navbar-list {
         display: none; /* Ocultar la lista por defecto en móviles */
@@ -84,7 +118,7 @@
         position: absolute; /* Posicionamiento absoluto */
         top: 60px; /* Ajustar la posición */
         left: 0; /* Alinear a la izquierda */
-        background-color: #343a40; /* Fondo */
+        background: #343a40; /* Fondo */
         z-index: 1000; /* Asegurarse de que esté por encima */
         gap: 0.3rem; /* Espacio entre elementos */
     }
@@ -100,10 +134,9 @@
     }
 
     .logout-button {
-        width: 30%; /* Hacer que el botón ocupe el ancho completo */
+        width: 78%; /* Hacer que el botón ocupe el ancho completo */
         padding: 0.7rem; /* Aumentar el padding para que se vea proporcional */
-        font-size: 1rem; /* Asegurar un tamaño de fuente consistente */
-        border-radius: 0; /* Quitar bordes redondeados para que sea más plano */
+        border-radius: 5px; /* Mantener bordes redondeados */
     }
 
     .hamburger {

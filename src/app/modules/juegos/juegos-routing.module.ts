@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
 import { MayormenorComponent } from './componentes/mayormenor/mayormenor.component';
+import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
+import { PreguntadosMainComponent } from './componentes/preguntados-main/preguntados-main.component';
+import { RuletaComponent } from './componentes/ruleta/ruleta.component';
+import { LaberintoComponent } from './componentes/laberinto/laberinto.component';
 
 const routes: Routes = [
   {
@@ -12,6 +16,16 @@ const routes: Routes = [
     path: 'mayor-menor',
     component: MayormenorComponent
   },
+  {
+    path: 'preguntados',
+    component: PreguntadosMainComponent
+  },
+  {
+    path: 'snake',
+    component: LaberintoComponent
+  }
+
+
   
 ];
 

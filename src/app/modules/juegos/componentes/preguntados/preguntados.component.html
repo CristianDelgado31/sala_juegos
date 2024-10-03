@@ -1,0 +1,30 @@
+<div class="preguntas-container" *ngIf="preguntaActual">
+    <h2>Preguntas de {{ tema }}</h2>
+    
+    <!-- Mostrar la bandera solo si la pregunta es sobre la capital de Francia -->
+    <img *ngIf="preguntaActual.pregunta === '¿Cuál es la capital de Francia?'" [src]="banderaUrl" alt="Bandera de Francia" class="bandera" />
+    <img *ngIf="preguntaActual.pregunta === '¿Qué bandera es esta?'" [src]="banderaUrl" alt="Bandera de Italia" class="bandera" />
+    <!-- Mostrar una imagen relacionada si no es la pregunta sobre la capital de Francia -->
+    <img *ngIf="preguntaActual.imagen && preguntaActual.pregunta !== '¿Cuál es la capital de Francia?'" [src]="preguntaActual.imagen" alt="Imagen relacionada" class="imagen-contexto" />
+
+    <p class="pregunta">{{ preguntaActual.pregunta }}</p>
+    
+    <ul>
+      <li *ngFor="let opcion of preguntaActual.opciones" 
+          (click)="puedeSeleccionar ? verificarRespuesta(opcion) : null" 
+          [class.disabled]="!puedeSeleccionar"
+          class="opcion">
+        {{ opcion }}
+      </li>
+    </ul>
+    
+    
+    <div *ngIf="mensaje" class="mensaje" [ngClass]="{'correcto': mensaje.includes('Correcta'), 'incorrecto': mensaje.includes('Incorrecta')}">
+      {{ mensaje }}
+    </div>
+</div>
+
+<div *ngIf="!preguntaActual" class="no-preguntas">
+    <p>No hay preguntas disponibles para este tema.</p>
+</div>
+

@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
 <router-outlet class="router-outlet"></router-outlet>
-<app-chat></app-chat>
+<app-chat *ngIf="isLoggedIn"></app-chat>
+<!-- <app-chat></app-chat> -->
 <app-footer></app-footer>

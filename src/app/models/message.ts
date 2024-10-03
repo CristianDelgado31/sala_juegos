@@ -2,17 +2,20 @@ export interface IMessage {
     fecha: Date;
     mensaje: string;
     usuario: string;
+    email: string;
 }
 
 export class Message implements IMessage {
     fecha: Date;
     mensaje: string;
     usuario: string;
+    email: string;
   
-    constructor(timestamp: any, mensaje: string, usuario: string) {
+    constructor(timestamp: any, mensaje: string, usuario: string, email: string) {
       this.fecha = this.convertTimestampToDate(timestamp);
       this.mensaje = mensaje;
       this.usuario = usuario;
+      this.email = email;
     }
   
     private convertTimestampToDate(timestamp: any): Date {

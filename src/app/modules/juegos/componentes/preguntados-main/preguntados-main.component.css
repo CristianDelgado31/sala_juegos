@@ -1,0 +1,60 @@
+.background-container {
+    background-color: #2774b7; /* Color de fondo suave */
+    padding: 50px 0; /* Espaciado superior e inferior */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
+}
+
+.container {
+    background-color: #ffffff; /* Fondo blanco para el contenido */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 50px; /* Aumentar el espaciado interno */
+    text-align: center; /* Centrar el texto */
+    transition: transform 0.3s; /* Transición para el efecto de hover */
+    width: 90%; /* Hacerlo más ancho */
+    max-width: 800px; /* Máximo ancho para pantallas grandes */
+    min-height: 400px; /* Mínima altura para que no se vea vacío */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+
+.container:hover {
+    transform: scale(1.02); /* Escalar ligeramente al pasar el mouse */
+}
+
+.logo-preguntados {
+    width: 300px; /* Tamaño de la imagen */
+    height: auto; /* Mantiene la proporción */
+    margin-bottom: 20px; /* Espacio entre la imagen y el título */
+    transition: transform 0.3s; /* Transición para el efecto de hover */
+}
+
+.logo-preguntados:hover {
+    transform: rotate(5deg); /* Rotar ligeramente al pasar el mouse */
+}
+
+.titulo-ruleta {
+    font-size: 2em; /* Tamaño del título */
+    color: #333; /* Color del texto */
+    margin-bottom: 15px; /* Espacio inferior */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra de texto */
+}
+
+.btn-iniciar {
+    padding: 10px 20px; /* Espaciado del botón */
+    font-size: 1.2em; /* Tamaño de fuente */
+    color: #fff; /* Color del texto */
+    background-color: #007bff; /* Color de fondo del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+.btn-iniciar:hover {
+    background-color: #0056b3; /* Cambiar color al pasar el mouse */
+    transform: scale(1.05); /* Escalar ligeramente el botón */
+}

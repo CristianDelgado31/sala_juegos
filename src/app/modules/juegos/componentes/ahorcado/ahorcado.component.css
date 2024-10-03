@@ -16,15 +16,21 @@
 h1 {
     color: #343a40;
     margin-bottom: 20px;
-    font-size: 2rem; /* Tamaño de fuente uniforme */
+    font-size: 2.5rem; /* Aumentar el tamaño del título */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Agregar sombra */
 }
 
+
 h2 {
-    color: #495057;
+    color: #495057; /* Color oscuro */
     margin: 15px 0;
-    font-size: 1.5rem; /* Tamaño de fuente uniforme */
-    text-align: center; /* Centrar el texto del h2 */
+    font-size: 2rem; /* Aumentar tamaño de fuente */
+    text-align: center; /* Centrar el texto */
+    font-weight: bold; /* Hacerlo más negrita */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+    letter-spacing: 1px; /* Espaciado entre letras */
 }
+
 
 select {
     padding: 10px;
@@ -75,7 +81,7 @@ button:hover {
 }
 
 .letra-boton:hover {
-    background-color: #218838;
+    background-color: #3360d3;
 }
 
 .ahorcado-dibujo {
@@ -92,43 +98,73 @@ button:hover {
 
 .mensaje {
     margin-top: 20px;
-    font-size: 18px;
-    color: #dc3545; /* Color rojo por defecto */
+    font-size: 1.8rem; /* Aumentar tamaño del texto */
+    color: #ffffff; /* Cambiar color a blanco para mejor contraste */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    padding: 15px; /* Agregar padding */
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center; /* Centrar el texto */
+    transition: background-color 0.3s; /* Transición suave */
 }
+
 
 .mensaje-victoria {
     color: #1ca53c; /* Color verde para mensajes de victoria */
 }
 
 .mensaje-perdido {
-    color: #dc3545; /* Color rojo para mensajes de derrota (opcional, ya está definido) */
+    color: #dc3545; /* Color rojo para mensajes de derrota */
 }
-
 
 .boton-reintentar {
-    background-color: #ffc107; /* Color amarillo para el botón de reintentar */
+    background-color: #ffc107; /* Color amarillo */
     color: black;
-    margin: 10px 0; /* Margen vertical para separar del resto */
-    width: 100%; /* Hacer que el botón ocupe todo el ancho */
+    padding: 12px 20px; /* Aumentar padding */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 1.5rem; /* Tamaño de fuente mayor */
+    margin-top: 15px; /* Espaciado superior */
+    border: none; /* Sin borde */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
 }
 
-.boton-reintentar-container {
-    display: flex;
-    justify-content: center; /* Centrar el botón */
-    margin-top: 20px; /* Espaciado superior */
+.boton-reintentar:hover {
+    background-color: #e0a800; /* Color al pasar el cursor */
+    transform: scale(1.05); /* Efecto de aumento al pasar el cursor */
 }
+
 
 .palabra {
     margin: 20px 0; /* Espacio vertical */
+    display: flex; /* Usar flex para alinear */
+    justify-content: center; /* Centrar las rayas */
+    font-size: 2rem; /* Tamaño de fuente */
 }
 
 .letra {
-    font-size: 2rem; /* Tamaño de fuente */
     margin: 0 10px; /* Espacio horizontal entre letras */
     display: inline-block; /* Para que el margen funcione correctamente */
-    width: 20px; /* Ancho fijo para mantener la alineación */
+    width: 30px; /* Ancho fijo para mantener la alineación */
     text-align: center; /* Centrar texto en cada letra */
+    color: #fafafa; /* Color azul para las rayas */
+    transition: color 0.3s; /* Transición suave */
 }
+
+.letra:empty {
+    color: transparent; /* Hacer la letra invisible cuando no está adivinada */
+}
+
+
+.letra-correcta {
+    background-color: #28a745; /* Color verde para letras correctas */
+    cursor: not-allowed; /* Cambiar el cursor para indicar que no se puede hacer clic */
+}
+
+.letra-incorrecta {
+    background-color: #dc3545; /* Color rojo para letras incorrectas */
+    cursor: not-allowed; /* Cambiar el cursor para indicar que no se puede hacer clic */
+}
+
 
 /* Media Queries para dispositivos móviles */
 @media (max-width: 600px) {

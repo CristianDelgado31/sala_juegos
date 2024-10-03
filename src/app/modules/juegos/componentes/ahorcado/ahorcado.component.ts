@@ -59,13 +59,14 @@ export class AhorcadoComponent {
 
   adivinarLetra(letra: string) {
     if (!this.letrasAdivinadas.includes(letra) && !this.perdio && !this.gano) {
-      this.letrasAdivinadas.push(letra);
-      if (!this.palabraActual.includes(letra)) {
-        this.intentos++;
-      }
-      this.verificarEstadoJuego();
+        this.letrasAdivinadas.push(letra);
+        if (!this.palabraActual.includes(letra)) {
+            this.intentos++;
+        }
+        this.verificarEstadoJuego();
     }
-  }
+}
+
 
   verificarEstadoJuego() {
     if (this.intentos >= this.maxIntentos) {
@@ -78,7 +79,7 @@ export class AhorcadoComponent {
   }
 
   getImagen(): string {
-    return `images/ahorcado/ahorcado${this.intentos}.jpg`;
+    return `images/ahorcado/hangman${this.intentos}.png`;
   }
 
   reiniciarJuego() {
@@ -91,5 +92,6 @@ export class AhorcadoComponent {
     this.gano = false;
   }
 
+  
 }
 

@@ -6,11 +6,12 @@ import { User } from '../../models/user';import { Firestore, addDoc, collection,
 import { Subscription } from 'rxjs';
 import { signInWithEmailAndPassword, Auth, signOut } from '@angular/fire/auth';
 import { UserService } from '../../services/user.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
   user!: User;
   email = '';
   password = '';
+  errorMessage: string = ''; // Propiedad para el mensaje de error
+  isLoading = false; // Propiedad para manejar el estado de carga
 
   public loginsCollection: any[] = [];
   public countLogins: number = 0;
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
   onLogin(): void {
     this.user = new User(this.email, this.password);
+    this.isLoading = true; // Inicia el spinner al comenzar el login
   
     signInWithEmailAndPassword(this.auth, this.user.getEmail(), this.user.getPassword())
       .then((response) => {
@@ -43,18 +47,14 @@ export class LoginComponent implements OnInit {
         this.logUsuarios();
       })
       .catch((error) => {
-        console.log('Error:', error);
+        // console.log('Error:', error);
+        this.errorMessage = 'Usuario no encontrado.'; // Establecer el mensaje de error
+      })
+      .finally(() => {
+        this.isLoading = false; // Detiene el spinner al finalizar
       });
   }
 
-  // CloseSession(): void {
-  //   signOut(this.auth).then(() => {
-  //     localStorage.removeItem('user');
-  //     this.router.navigate(['/login']);
-  //   }).catch((error) => {
-  //     console.log('Error:', error);
-  //   });
-  // }
 
   // Cambiar los nombres del html y css de login con email y password
 
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
     this.email = email;
     this.password = password;
 
-    this.onLogin();
+    // this.onLogin();
   }
 
 }

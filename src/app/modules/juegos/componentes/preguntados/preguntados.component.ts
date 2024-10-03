@@ -1,0 +1,117 @@
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { TemaService } from '../../../../services/preguntados/tema.service';
+import { BanderasService } from '../../../../services/preguntados/banderas.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-preguntados',
+  templateUrl: './preguntados.component.html',
+  styleUrls: ['./preguntados.component.css']
+})
+export class PreguntadosComponent implements OnInit, OnDestroy {
+  @Input() tema!: string; // Recibe el tema seleccionado como entrada
+  preguntaActual: { pregunta: string, opciones: string[], respuestaCorrecta: string, imagen?: string } | null = null;
+  mensaje: string | null = null; // Para mostrar mensajes de respuesta
+  banderaUrl: string | null = null; // URL de la bandera
+  puedeSeleccionar: boolean = true; // Controla si se pueden seleccionar opciones
+  preguntasRespondidas: string[] = []; // Para almacenar preguntas ya respondidas
+
+
+  constructor(private temaService: TemaService, private banderasService: BanderasService, private router: Router) {}
+
+  ngOnInit() {
+    this.cargarPregunta();
+  }
+
+  cargarPregunta() {
+    const preguntasPorTema: { [key: string]: { pregunta: string, opciones: string[], respuestaCorrecta: string, imagen?: string }[] } = {
+      'Historia': [
+        { pregunta: '¿Quién fue el primer presidente de EE. UU.?', opciones: ['George Washington', 'Abraham Lincoln', 'John Adams'], respuestaCorrecta: 'George Washington', imagen: 'images/preguntados/casa_blanca.jpg' },
+        { pregunta: '¿Qué año comenzó la Segunda Guerra Mundial?', opciones: ['1939', '1945', '1914'], respuestaCorrecta: '1939', imagen: 'images/preguntados/segunda_guerra_mundial.jpg' }
+      ],
+      'Deportes': [
+        { pregunta: '¿Cuántos jugadores hay en un equipo de fútbol?', opciones: ['11', '9', '7'], respuestaCorrecta: '11', imagen: 'images/preguntados/futbol.jpg' },
+        { pregunta: '¿En qué deporte se utiliza una raqueta?', opciones: ['Tenis', 'Béisbol', 'Fútbol'], respuestaCorrecta: 'Tenis', imagen: 'images/preguntados/raqueta.jpeg' }
+      ],
+      'Arte': [
+        { pregunta: '¿Quién pintó la Mona Lisa?', opciones: ['Vincent van Gogh', 'Leonardo da Vinci', 'Pablo Picasso'], respuestaCorrecta: 'Leonardo da Vinci', imagen: 'images/preguntados/mona_lisa.jpg' },
+        { pregunta: '¿Qué movimiento artístico es conocido por su enfoque en la luz?', opciones: ['Impresionismo', 'Cubismo', 'Surrealismo'], respuestaCorrecta: 'Impresionismo', imagen: 'images/preguntados/impresionismo.jpg' }
+      ],
+      'Geografía': [
+        { pregunta: '¿Cuál es la capital de Francia?', opciones: ['Berlín', 'Madrid', 'París'], respuestaCorrecta: 'París', imagen: '' }, // Bandera se cargará desde el servicio
+        { pregunta: '¿Qué bandera es esta?', opciones: ['Italia', 'Nueva Zelanda', 'Canadá'], respuestaCorrecta: 'Italia', imagen: '' },
+        { pregunta: '¿Qué país es conocido como la tierra de los canguros?', opciones: ['Australia', 'Sudáfrica', 'Canadá'], respuestaCorrecta: 'Australia', imagen: 'images/preguntados/canguro.jpeg' }
+      ],
+      'Ciencia': [
+        { pregunta: '¿Cuál es el hueso más largo del cuerpo humano?', opciones: ['Fémur', 'Húmero', 'Tibia'], respuestaCorrecta: 'Fémur', imagen: 'images/preguntados/huesos.jpg' }
+      ],
+      'Entretenimiento': [
+        { pregunta: '¿Quién escribió la serie de libros de Harry Potter?', opciones: ['J.K. Rowling', 'Stephen King', 'George R.R. Martin'], respuestaCorrecta: 'J.K. Rowling', imagen: 'images/preguntados/harry_potter.jpeg' }
+      ],
+    };
+
+    const preguntasTema = preguntasPorTema[this.tema] || [];
+    this.preguntaActual = preguntasTema[Math.floor(Math.random() * preguntasTema.length)];
+
+    // Filtra las preguntas que ya han sido respondidas para evitar repetirlas
+    const preguntasRestantes = preguntasTema.filter(p => !this.preguntasRespondidas.includes(p.pregunta));
+
+    if (preguntasRestantes.length > 0) {
+      this.preguntaActual = preguntasRestantes[Math.floor(Math.random() * preguntasRestantes.length)];
+      this.preguntasRespondidas.push(this.preguntaActual.pregunta); // Guarda la pregunta respondida
+    } else {
+      // this.mensaje = 'No hay más preguntas disponibles para este tema.';
+      setTimeout(() => {
+        this.temaService.limpiarTema(); // Limpia el tema al salir del componente
+        this.preguntaActual = null; // Opcional: limpia la pregunta actual
+      }, 100);
+    }
+
+    // Cargar la bandera solo si la pregunta actual es "¿Cuál es la capital de Francia?"
+    if (this.preguntaActual && this.preguntaActual.pregunta === '¿Cuál es la capital de Francia?') {
+      this.cargarBandera('France');
+    } else if (this.preguntaActual && this.preguntaActual.pregunta === '¿Qué bandera es esta?') {
+      this.cargarBandera('Italy');
+    } else if (this.preguntaActual) {
+      this.banderaUrl = this.preguntaActual.imagen ?? null; // Cargar la imagen de la pregunta si está disponible
+    }
+  }
+
+  cargarBandera(dato: string) {
+    this.banderasService.obtenerBandera(dato).subscribe(
+      (data) => {
+        this.banderaUrl = data[0].flags.svg; // Obtén la URL de la bandera
+      },
+      (error) => {
+        console.error('Error al obtener la bandera:', error);
+        this.banderaUrl = null; // Si hay un error, no mostramos ninguna bandera
+      }
+    );
+  }
+
+  verificarRespuesta(opcion: string) {
+    if (this.preguntaActual && this.puedeSeleccionar) {
+      this.puedeSeleccionar = false; // Desactivar selección
+      if (opcion === this.preguntaActual.respuestaCorrecta) {
+        this.mensaje = '¡Respuesta Correcta!';
+        setTimeout(() => {
+          this.mensaje = null;
+          this.cargarPregunta(); // Cargar nueva pregunta después de unos segundos
+          this.puedeSeleccionar = true; // Activar selección para la siguiente pregunta
+        }, 2000);
+      } else {
+        this.mensaje = 'Respuesta Incorrecta.';
+        setTimeout(() => {
+          this.mensaje = null;
+          this.puedeSeleccionar = true; // Activar selección para la siguiente pregunta
+          this.cargarPregunta();
+        }, 2000);
+      }
+    }
+  }
+  
+
+  ngOnDestroy() {
+    this.temaService.limpiarTema(); // Limpia el tema al salir del componente
+  }
+}

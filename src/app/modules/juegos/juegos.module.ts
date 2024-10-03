@@ -5,21 +5,31 @@ import { JuegosRoutingModule } from './juegos-routing.module';
 import { AhorcadoComponent } from './componentes/ahorcado/ahorcado.component';
 import { MayormenorComponent } from './componentes/mayormenor/mayormenor.component';
 import { FormsModule } from '@angular/forms';
+import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
+import { PreguntadosMainComponent } from './componentes/preguntados-main/preguntados-main.component';
+import { RuletaComponent } from './componentes/ruleta/ruleta.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BanderasService } from '../../services/preguntados/banderas.service';
+import { LaberintoComponent } from './componentes/laberinto/laberinto.component';
 
 
 @NgModule({
-  declarations: [AhorcadoComponent, MayormenorComponent],
+  declarations: [AhorcadoComponent, MayormenorComponent, PreguntadosComponent, PreguntadosMainComponent, RuletaComponent, LaberintoComponent],
   exports: [
     AhorcadoComponent,
     MayormenorComponent,
+    PreguntadosComponent,
+    PreguntadosMainComponent,
+    RuletaComponent,
+    LaberintoComponent
   ],
   imports: [
     CommonModule,
     JuegosRoutingModule,
     FormsModule,
-    // HttpClientModule
+    HttpClientModule
   ],
-  // providers: [CardService] // Registra el servicio aquí
+  providers: [BanderasService] // Registra el servicio aquí
   
 })
 export class JuegosModule { }

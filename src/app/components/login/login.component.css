@@ -122,6 +122,29 @@ button:hover {
   text-decoration: underline; /* Subrayado al pasar el ratón */
 }
 
+.error-message{
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3; /* Color de fondo del spinner */
+  border-top: 8px solid #007a33; /* Color del borde superior */
+  border-radius: 50%; /* Hace que sea un círculo */
+  width: 40px; /* Ancho del spinner */
+  height: 40px; /* Alto del spinner */
+  animation: spin 1s linear infinite; /* Animación del giro */
+  margin: 10px auto; /* Centrar el spinner */
+}
+
+/* Animación de giro */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 /* Responsividad */
 @media (max-width: 768px) {

@@ -3,45 +3,34 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    background-size: 80px;
-    background-repeat: repeat;
-    background-position: center;
-    background-color: #f16a0c;
+    background: linear-gradient(to bottom right, #f16a0c, #ffbb33); /* Degradado más atractivo */
 }
 
 .bienvenido-container {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(34, 34, 34, 0.8));
-    padding: 8rem;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    max-width: 600px; 
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    padding: 4rem; /* Espaciado */
+    border-radius: 15px; /* Bordes más redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    max-width: 800px; 
     width: 100%;
     text-align: center;
-    color: white; /* Texto blanco para contraste */
+    color: white;
 }
 
 h1 {
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-    color: #f8f9fa; /* Color claro para el título */
+    margin-bottom: 1.5rem;
+    font-size: 2.8rem; /* Aumento de tamaño */
+    font-family: 'Arial', sans-serif; /* Fuente más moderna */
 }
 
 h2 {
     margin: 2rem 0 1rem;
-    font-size: 1.8rem;
-    color: #e0e0e0; /* Color gris claro para subtítulos */
-}
-
-.acciones-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    font-size: 2rem; /* Aumento de tamaño */
 }
 
 .juegos-container {
-    display: grid; /* Usar grid para organizar los juegos */
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
     gap: 1rem; /* Espacio entre juegos */
 }
 
@@ -50,17 +39,27 @@ h2 {
 }
 
 .juego-imagen {
-    width: 150px; /* Establece un ancho fijo */
-    height: 150px; /* Establece una altura fija */
-    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
-    border-radius: 5px; 
+    width: 150px; /* Ancho fijo */
+    height: 150px; /* Altura fija */
+    object-fit: cover; /* Ajuste de imagen */
+    border-radius: 10px; /* Bordes redondeados */
     margin-bottom: 0.5rem;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra inicial */
+    background-color: wheat;
 }
+
+.juego-imagen:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    filter: brightness(1.1); /* Aumentar el brillo */
+}
+
 
 .accion-boton {
     color: white;
     border: none;
-    padding: 1rem;
+    padding: 0.8rem 1.2rem; /* Espaciado interno */
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
@@ -68,82 +67,81 @@ h2 {
     width: 100%;
 }
 
-.accion-boton:hover {
-    transform: scale(1.05);
-}
-
-.btn_quiensoy {
-    background-color: #28a745; /* Verde */
-}
-
 .btn_login {
-    background-color: #007bff; /* Fondo azul */
-    color: #fff; /* Texto blanco */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px 20px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de fuente */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s, transform 0.2s; /* Transición suave */
-    margin-bottom: 1rem;
+    background-color: #007bff; /* Azul */
 }
 
 .btn_login:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
-    transform: scale(1.05); /* Efecto de aumento */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
-}
-
-.btn_login:active {
-    transform: scale(0.95); /* Efecto de compresión al hacer clic */
+    background-color: #0056b3; /* Azul más oscuro */
 }
 
 .btn_registro {
     background-color: #ff7f50; /* Naranja coral */
-    color: #fff; /* Texto blanco */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px 20px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de fuente */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s, transform 0.2s; /* Transición suave */
 }
 
 .btn_registro:hover {
-    background-color: #ff6347; /* Tomate más oscuro al pasar el mouse */
-    transform: scale(1.05); /* Efecto de aumento */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
+    background-color: #ff6347; /* Tomate más oscuro */
 }
-
-.btn_registro:active {
-    transform: scale(0.95); /* Efecto de compresión al hacer clic */
-}
-
-
 
 .btn_juegos {
     background-color: #28a745; /* Verde brillante */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 0.8rem 1.2rem; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 1.1rem; /* Tamaño de fuente */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra */
+    position: relative; /* Para el efecto de elevación */
+    overflow: hidden; /* Para recortar el contenido desbordante */
+}
+
+.btn_juegos::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Inicialmente fuera de vista */
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Capa blanca semitransparente */
+    transition: top 0.3s; /* Transición suave */
+}
+
+.btn_juegos:hover::after {
+    top: 0; /* Desplazarse hacia abajo en hover */
 }
 
 .btn_juegos:hover {
-    background-color: #218838; /* Verde oscuro */
+    background-color: #218838; /* Verde oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
 }
 
-.btn_logout {
-    background-color: #dc3545; /* Rojo */
+.btn_juegos:active {
+    transform: translateY(0); /* Efecto de retorno al hacer clic */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra normal al hacer clic */
 }
-
-/* Estilos hover para botones */
-.accion-boton:hover {
-    opacity: 0.9; /* Opacidad al pasar el mouse */
-}
-
 
 
 /* Estilos responsive */
 @media (max-width: 768px) {
     .bienvenido-container {
-        padding: 4rem 2rem;
+        padding: 3rem 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .bienvenido-container {
+        padding: 2rem 0.5rem;
     }
 
     h1 {
@@ -152,29 +150,5 @@ h2 {
 
     h2 {
         font-size: 1.5rem;
-    }
-
-    .accion-boton {
-        font-size: 1rem;
-        padding: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .bienvenido-container {
-        padding: 4rem 1rem;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    h2 {
-        font-size: 1.3rem;
-    }
-
-    .accion-boton {
-        font-size: 0.9rem;
-        padding: 0.9rem;
     }
 }

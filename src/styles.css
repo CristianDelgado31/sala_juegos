@@ -5,3 +5,42 @@ html, body {
     height: 100%; /* Asegura que ocupen toda la altura */
     overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
+
+/* Estilos para la barra de desplazamiento en navegadores WebKit */
+::-webkit-scrollbar {
+    width: 14px; /* Ancho de la barra */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Color del thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666; /* Color más oscuro al pasar el mouse */
+}
+
+/* Establecer el fondo oscuro del scrollbar */
+::-webkit-scrollbar-track {
+    background: #222; /* Color oscuro del fondo de la barra */
+}
+
+/* Para Firefox */
+.scrollable {
+    scrollbar-width: thin; /* Barra delgada */
+    scrollbar-color: #888 #222; /* Color del thumb y del fondo */
+}
+
+/* Estilos responsivos para el scrollbar en dispositivos móviles */
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 7px; /* Ancho de la barra en modo celular */
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #888; /* Color del thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #666; /* Color más oscuro al pasar el mouse */
+    }
+}

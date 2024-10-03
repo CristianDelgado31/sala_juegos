@@ -13,7 +13,13 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn_login">Login</button>
+        <button type="submit" class="btn_login" [disabled]="isLoading">Login</button>
+      </div>
+
+      <div *ngIf="isLoading" class="spinner"></div> <!-- Spinner -->
+      <!-- Mostrar mensaje de error -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
       </div>
     </form>
 

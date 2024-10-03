@@ -1,18 +1,16 @@
 <section class="bienvenido-section">
   <div class="bienvenido-container">
     <h1>{{title}}</h1>
-    
-    <button *ngIf="userInLocalStorage" (click)="logOut()" class="accion-boton btn_logout">Logout</button>
     <button *ngIf="!userInLocalStorage" [routerLink]="['/login']" class="accion-boton btn_login">Login</button>
     <button *ngIf="!userInLocalStorage" [routerLink]="['/registro']" class="accion-boton btn_registro">Register</button>
 
     <h2>Lista de juegos</h2>
     <div class="juegos-container">
       <div class="juego">
-        <a (click)="navigateToGame('/juego1')">
+        <a (click)="navigateToGame('/juegos/preguntados')">
           <img src="images/icono_juegos/preguntados.jpg" alt="Juego 1" class="juego-imagen">
         </a>
-        <button (click)="navigateToGame('/juego1')" class="accion-boton btn_juegos">Preguntados</button>
+        <button (click)="navigateToGame('/juegos/preguntados')" class="accion-boton btn_juegos">Preguntados</button>
       </div>
       <div class="juego">
         <a (click)="navigateToGame('/juegos/ahorcado')">
@@ -27,10 +25,10 @@
         <button (click)="navigateToGame('/juegos/mayor-menor')" class="accion-boton btn_juegos">Mayor o Menor</button>
       </div>
       <div class="juego">
-        <a (click)="navigateToGame('/juego4')">
-          <img src="images/icono_juegos/rayo.png" alt="Juego 4" class="juego-imagen">
+        <a (click)="navigateToGame('/juegos/snake')">
+          <img src="images/icono_juegos/snake.jpeg" alt="Juego 4" class="juego-imagen">
         </a>
-        <button (click)="navigateToGame('/juego4')" class="accion-boton btn_juegos">Tiempo de Reacción</button>
+        <button (click)="navigateToGame('/juegos/snake')" class="accion-boton btn_juegos">Viborita</button>
       </div>
     </div>
   </div>
