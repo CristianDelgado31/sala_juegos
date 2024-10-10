@@ -33,7 +33,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.805); /* Fondo suave para el contenedor */
+  background-color: #393333; /* Fondo suave para el contenedor */
   padding: 20px; /* Espaciado interior */
   border-radius: 10px; /* Bordes redondeados */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para un efecto elevado */

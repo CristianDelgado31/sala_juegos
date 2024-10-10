@@ -6,6 +6,7 @@ import { PreguntadosComponent } from './componentes/preguntados/preguntados.comp
 import { PreguntadosMainComponent } from './componentes/preguntados-main/preguntados-main.component';
 import { RuletaComponent } from './componentes/ruleta/ruleta.component';
 import { LaberintoComponent } from './componentes/laberinto/laberinto.component';
+import { ResultadosComponent } from './componentes/resultados/resultados.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'snake',
     component: LaberintoComponent
+  },
+  {
+    path: 'resultados',
+    component: ResultadosComponent
   }
 
 

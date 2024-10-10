@@ -1,0 +1,27 @@
+<div class="resultados-container">
+    <h1>Resultados del Juego</h1>
+    <div class="spacer"></div> <!-- Espaciador -->
+    <table class="resultados-table">
+      <thead>
+        <tr>
+            <th>Username</th>
+          <th>Email</th>
+          <th>Juego</th>
+          <th>Puntos</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultado of resultados$ | async">
+            <td>{{ resultado.username }}</td>
+          <td>{{ resultado.email }}</td>
+          <td>{{ resultado.juego }}</td>
+          <td>{{ resultado.puntos }}</td>
+          <td>{{ convertTimestampToDate(resultado.fecha) | date:'dd/MM/yy HH:mm' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  

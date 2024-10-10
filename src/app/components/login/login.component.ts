@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { User } from '../../models/user';import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc} from '@angular/fire/firestore';
-
+import { User } from '../../models/user';
+import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc} from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { signInWithEmailAndPassword, Auth, signOut } from '@angular/fire/auth';
 import { UserService } from '../../services/user.service';

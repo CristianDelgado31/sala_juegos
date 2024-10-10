@@ -15,15 +15,25 @@
   background-color: #ffffff; /* Fondo blanco para el contenedor */
   border-radius: 20px; /* Bordes más redondeados */
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15); 
-  padding: 50px 30px; 
+  padding: 50px 80px; 
   max-width: 450px; /* Aumenta el ancho */
   position: relative; 
   overflow: hidden; 
 }
 
-.carta-container {
+.cartas-container {
+  display: flex; /* Alinear cartas en fila */
+  justify-content: center; /* Centrar las cartas */
+  gap: 80px; /* Espacio entre cartas */
   margin: 20px 0; 
   z-index: 1; 
+}
+
+
+.carta-container {
+  display: flex; /* Asegura que la carta ocupe solo el espacio necesario */
+  flex-direction: column; /* Alinea el contenido en columna */
+  align-items: center; /* Centra el contenido horizontalmente */
 }
 
 .carta {
@@ -112,4 +122,17 @@
 
 .reiniciar-boton:active {
   transform: scale(0.95); /* Disminuir tamaño al hacer clic */
+}
+
+.carta-dada-vuelta {
+  transform: rotateY(180deg); /* Gira la carta */
+}
+
+
+.cartas-restantes {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px; 
+  color: #007bff; 
+  text-align: center; /* Centrar el texto */
 }

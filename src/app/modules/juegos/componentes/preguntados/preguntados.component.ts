@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TemaService } from '../../../../services/preguntados/tema.service';
 import { BanderasService } from '../../../../services/preguntados/banderas.service';
 import { Router } from '@angular/router';
+import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc, Timestamp} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-preguntados',
@@ -9,73 +10,103 @@ import { Router } from '@angular/router';
   styleUrls: ['./preguntados.component.css']
 })
 export class PreguntadosComponent implements OnInit, OnDestroy {
-  @Input() tema!: string; // Recibe el tema seleccionado como entrada
+  @Input() tema!: string; // Recibe el continente seleccionado como entrada
   preguntaActual: { pregunta: string, opciones: string[], respuestaCorrecta: string, imagen?: string } | null = null;
   mensaje: string | null = null; // Para mostrar mensajes de respuesta
   banderaUrl: string | null = null; // URL de la bandera
   puedeSeleccionar: boolean = true; // Controla si se pueden seleccionar opciones
   preguntasRespondidas: string[] = []; // Para almacenar preguntas ya respondidas
+  puntaje: number = 0; // Puntaje del usuario
 
-
-  constructor(private temaService: TemaService, private banderasService: BanderasService, private router: Router) {}
+  constructor(private temaService: TemaService, private banderasService: BanderasService, 
+    private router: Router, private firebase : Firestore) {}
 
   ngOnInit() {
     this.cargarPregunta();
   }
 
   cargarPregunta() {
-    const preguntasPorTema: { [key: string]: { pregunta: string, opciones: string[], respuestaCorrecta: string, imagen?: string }[] } = {
-      'Historia': [
-        { pregunta: '¿Quién fue el primer presidente de EE. UU.?', opciones: ['George Washington', 'Abraham Lincoln', 'John Adams'], respuestaCorrecta: 'George Washington', imagen: 'images/preguntados/casa_blanca.jpg' },
-        { pregunta: '¿Qué año comenzó la Segunda Guerra Mundial?', opciones: ['1939', '1945', '1914'], respuestaCorrecta: '1939', imagen: 'images/preguntados/segunda_guerra_mundial.jpg' }
+    const preguntasPorContinente: { [key: string]: { pregunta: string, opciones: string[], respuestaCorrecta: string, imagen?: string }[] } = {
+      'Americas': [
+        { pregunta: '¿Cuál es la capital de EE.UU.?', opciones: ['Washington D.C.', 'Nueva York', 'Los Ángeles'], respuestaCorrecta: 'Washington D.C.', imagen: '' },
+        { pregunta: '¿Qué bandera es esta?', opciones: ['Argentina', 'Brasil', 'Chile'], respuestaCorrecta: 'Argentina', imagen: '' }
       ],
-      'Deportes': [
-        { pregunta: '¿Cuántos jugadores hay en un equipo de fútbol?', opciones: ['11', '9', '7'], respuestaCorrecta: '11', imagen: 'images/preguntados/futbol.jpg' },
-        { pregunta: '¿En qué deporte se utiliza una raqueta?', opciones: ['Tenis', 'Béisbol', 'Fútbol'], respuestaCorrecta: 'Tenis', imagen: 'images/preguntados/raqueta.jpeg' }
+      'Europe': [
+        { pregunta: '¿Cuál es la capital de Alemania?', opciones: ['Berlín', 'Múnich', 'Frankfurt'], respuestaCorrecta: 'Berlín', imagen: '' },
+        { pregunta: '¿Qué bandera es esta?', opciones: ['Francia', 'Italia', 'España'], respuestaCorrecta: 'Francia', imagen: '' }
       ],
-      'Arte': [
-        { pregunta: '¿Quién pintó la Mona Lisa?', opciones: ['Vincent van Gogh', 'Leonardo da Vinci', 'Pablo Picasso'], respuestaCorrecta: 'Leonardo da Vinci', imagen: 'images/preguntados/mona_lisa.jpg' },
-        { pregunta: '¿Qué movimiento artístico es conocido por su enfoque en la luz?', opciones: ['Impresionismo', 'Cubismo', 'Surrealismo'], respuestaCorrecta: 'Impresionismo', imagen: 'images/preguntados/impresionismo.jpg' }
+      'Asia': [
+        { pregunta: '¿Cuál es la capital de Japón?', opciones: ['Tokio', 'Seúl', 'Beijing'], respuestaCorrecta: 'Tokio', imagen: '' },
+        { pregunta: '¿Qué bandera es esta?', opciones: ['China', 'India', 'Tailandia'], respuestaCorrecta: 'China', imagen: '' }
       ],
-      'Geografía': [
-        { pregunta: '¿Cuál es la capital de Francia?', opciones: ['Berlín', 'Madrid', 'París'], respuestaCorrecta: 'París', imagen: '' }, // Bandera se cargará desde el servicio
-        { pregunta: '¿Qué bandera es esta?', opciones: ['Italia', 'Nueva Zelanda', 'Canadá'], respuestaCorrecta: 'Italia', imagen: '' },
-        { pregunta: '¿Qué país es conocido como la tierra de los canguros?', opciones: ['Australia', 'Sudáfrica', 'Canadá'], respuestaCorrecta: 'Australia', imagen: 'images/preguntados/canguro.jpeg' }
+      'Oceania': [
+        { pregunta: '¿Cuál es la capital de Australia?', opciones: ['Canberra', 'Sídney', 'Melbourne'], respuestaCorrecta: 'Canberra', imagen: '' },
+        { pregunta: '¿Qué bandera es esta?', opciones: ['Nueva Zelanda', 'Fiyi', 'Samoa'], respuestaCorrecta: 'Nueva Zelanda', imagen: '' }
       ],
-      'Ciencia': [
-        { pregunta: '¿Cuál es el hueso más largo del cuerpo humano?', opciones: ['Fémur', 'Húmero', 'Tibia'], respuestaCorrecta: 'Fémur', imagen: 'images/preguntados/huesos.jpg' }
-      ],
-      'Entretenimiento': [
-        { pregunta: '¿Quién escribió la serie de libros de Harry Potter?', opciones: ['J.K. Rowling', 'Stephen King', 'George R.R. Martin'], respuestaCorrecta: 'J.K. Rowling', imagen: 'images/preguntados/harry_potter.jpeg' }
-      ],
+      'Africa': [
+        { pregunta: '¿Cuál es la capital de Sudáfrica?', opciones: ['Pretoria', 'Johannesburgo', 'Ciudad del Cabo'], respuestaCorrecta: 'Pretoria', imagen: '' },
+        { pregunta: '¿Qué bandera es esta?', opciones: ['Nigeria', 'Egipto', 'Sudáfrica'], respuestaCorrecta: 'Nigeria', imagen: '' }
+      ]
     };
 
-    const preguntasTema = preguntasPorTema[this.tema] || [];
-    this.preguntaActual = preguntasTema[Math.floor(Math.random() * preguntasTema.length)];
-
-    // Filtra las preguntas que ya han sido respondidas para evitar repetirlas
-    const preguntasRestantes = preguntasTema.filter(p => !this.preguntasRespondidas.includes(p.pregunta));
+    const preguntasContinente = preguntasPorContinente[this.tema] || [];
+    const preguntasRestantes = preguntasContinente.filter(p => !this.preguntasRespondidas.includes(p.pregunta));
 
     if (preguntasRestantes.length > 0) {
       this.preguntaActual = preguntasRestantes[Math.floor(Math.random() * preguntasRestantes.length)];
       this.preguntasRespondidas.push(this.preguntaActual.pregunta); // Guarda la pregunta respondida
+      this.cargarBanderaPorPregunta(this.preguntaActual);
     } else {
-      // this.mensaje = 'No hay más preguntas disponibles para este tema.';
       setTimeout(() => {
+        this.guardarPuntaje(); // Guarda el puntaje al terminar
         this.temaService.limpiarTema(); // Limpia el tema al salir del componente
-        this.preguntaActual = null; // Opcional: limpia la pregunta actual
-      }, 100);
-    }
-
-    // Cargar la bandera solo si la pregunta actual es "¿Cuál es la capital de Francia?"
-    if (this.preguntaActual && this.preguntaActual.pregunta === '¿Cuál es la capital de Francia?') {
-      this.cargarBandera('France');
-    } else if (this.preguntaActual && this.preguntaActual.pregunta === '¿Qué bandera es esta?') {
-      this.cargarBandera('Italy');
-    } else if (this.preguntaActual) {
-      this.banderaUrl = this.preguntaActual.imagen ?? null; // Cargar la imagen de la pregunta si está disponible
+        this.preguntaActual = null; // Limpia la pregunta actual
+      }, 50);
     }
   }
+
+  cargarBanderaPorPregunta(pregunta: { pregunta: string, opciones: string[], respuestaCorrecta: string }) {
+    // Reinicia banderaUrl al principio
+    this.banderaUrl = null;
+
+    // Decide qué bandera cargar según la respuesta correcta
+    switch (pregunta.respuestaCorrecta) {
+      case 'Washington D.C.':
+        this.cargarBandera('United States');
+        break;
+      case 'Argentina':
+        this.cargarBandera('Argentina');
+        break;
+      case 'Berlín':
+        this.cargarBandera('Germany');
+        break;
+      case 'Francia':
+        this.cargarBandera('France');
+        break;
+      case 'Tokio':
+        this.cargarBandera('Japan');
+        break;
+      case 'China':
+        this.cargarBandera('China');
+        break;
+      case 'Canberra':
+        this.cargarBandera('Australia');
+        break;
+      case 'Nueva Zelanda':
+        this.cargarBandera('New Zealand');
+        break;
+      case 'Pretoria':
+        this.cargarBandera('South Africa');
+        break;
+      case 'Nigeria':
+        this.cargarBandera('Nigeria');
+        break;
+      default:
+        this.banderaUrl = null; // Sin bandera para otras preguntas
+        break;
+    }
+}
+
 
   cargarBandera(dato: string) {
     this.banderasService.obtenerBandera(dato).subscribe(
@@ -94,6 +125,7 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       this.puedeSeleccionar = false; // Desactivar selección
       if (opcion === this.preguntaActual.respuestaCorrecta) {
         this.mensaje = '¡Respuesta Correcta!';
+        this.puntaje += 50; // Sumar puntos por respuesta correcta
         setTimeout(() => {
           this.mensaje = null;
           this.cargarPregunta(); // Cargar nueva pregunta después de unos segundos
@@ -109,9 +141,21 @@ export class PreguntadosComponent implements OnInit, OnDestroy {
       }
     }
   }
-  
 
   ngOnDestroy() {
     this.temaService.limpiarTema(); // Limpia el tema al salir del componente
   }
+
+  guardarPuntaje() : void {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const username = user.email.split('@')[0]; // Obtener el nombre de usuario
+    const fecha = Timestamp.fromDate(new Date());
+
+    // Guardar puntaje en la base de datos
+    const resultado = { email: user.email, fecha: fecha, juego: 'preguntados', puntos: this.puntaje, username: username };
+    const col = collection(this.firebase, 'resultados');
+    addDoc(col, resultado);
+
+  }  
+
 }

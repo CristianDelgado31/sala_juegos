@@ -1,0 +1,48 @@
+.resultados-container {
+  background-color: #2c3e50; /* Fondo oscuro */
+  padding: 20px 20px;
+  padding-bottom: 270px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  margin: 40px auto; /* Margen superior e inferior */
+}
+
+h1 {
+  color: #ecf0f1; /* Color del texto */
+  text-align: center;
+  font-family: 'Press Start 2P', cursive; /* Fuente de estilo retro */
+  margin-bottom: 20px;
+}
+
+.resultados-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Courier New', monospace; /* Fuente tipo consola */
+  margin-top: 20px; /* Espacio entre el título y la tabla */
+}
+
+.resultados-table th,
+.resultados-table td {
+  padding: 12px;
+  text-align: center;
+  color: #ecf0f1; /* Color del texto */
+  border-bottom: 1px solid #34495e; /* Línea de separación */
+}
+
+.resultados-table th {
+  background-color: #3498db; /* Color de fondo para encabezados */
+  font-weight: bold;
+}
+
+.resultados-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Efecto hover */
+}
+
+.resultados-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05); /* Color de fila par */
+}
+
+.resultados-table tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.02); /* Color de fila impar */
+}

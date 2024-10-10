@@ -1,0 +1,62 @@
+<div class="encuesta-container">
+    <h1>Encuesta</h1>
+    <form [formGroup]="encuestaForm" (ngSubmit)="enviarEncuesta()">
+        <div>
+            <label>Nombre:</label>
+            <input formControlName="nombre" type="text" required>
+            <div *ngIf="encuestaForm.get('nombre')?.invalid && (encuestaForm.get('nombre')?.touched || encuestaForm.get('nombre')?.dirty)">
+                <small *ngIf="encuestaForm.get('nombre')?.errors?.['required']">El nombre es requerido.</small>
+                <small *ngIf="encuestaForm.get('nombre')?.errors?.['pattern']">Solo se permiten letras.</small>
+            </div>
+        </div>
+        <div>
+            <label>Apellido:</label>
+            <input formControlName="apellido" type="text" required>
+            <div *ngIf="encuestaForm.get('apellido')?.invalid && (encuestaForm.get('apellido')?.touched || encuestaForm.get('apellido')?.dirty)">
+                <small *ngIf="encuestaForm.get('apellido')?.errors?.['required']">El apellido es requerido.</small>
+                <small *ngIf="encuestaForm.get('apellido')?.errors?.['pattern']">Solo se permiten letras.</small>
+            </div>
+        </div>
+        <div>
+            <label>Edad:</label>
+            <input formControlName="edad" type="number" required>
+            <div *ngIf="encuestaForm.get('edad')?.invalid && (encuestaForm.get('edad')?.touched || encuestaForm.get('edad')?.dirty)">
+                <small *ngIf="encuestaForm.get('edad')?.errors?.['required']">La edad es requerida.</small>
+                <small *ngIf="encuestaForm.get('edad')?.errors?.['min']">Debes ser mayor de 18 años.</small>
+                <small *ngIf="encuestaForm.get('edad')?.errors?.['max']">Debes ser menor de 99 años.</small>
+            </div>
+        </div>
+        <div>
+            <label>Número de Teléfono:</label>
+            <input formControlName="telefono" type="text" required>
+            <div *ngIf="encuestaForm.get('telefono')?.invalid && (encuestaForm.get('telefono')?.touched || encuestaForm.get('telefono')?.dirty)">
+                <small *ngIf="encuestaForm.get('telefono')?.errors?.['required']">El teléfono es requerido.</small>
+                <small *ngIf="encuestaForm.get('telefono')?.errors?.['pattern']">Solo se permiten números y hasta 10 caracteres.</small>
+            </div>
+        </div>
+
+        <div formGroupName="respuestas">
+            <div *ngFor="let pregunta of preguntas">
+                <label>{{ pregunta.question }}</label>
+                <div *ngIf="pregunta.type === 'radio'">
+                    <div *ngFor="let option of pregunta.options">
+                        <input type="radio" [value]="option" formControlName="radio">{{ option }}
+                    </div>
+                </div>
+                <div *ngIf="pregunta.type === 'checkbox'">
+                    <div *ngFor="let option of pregunta.options">
+                        <input type="checkbox" [value]="option" (change)="onCheckboxChange($event)">{{ option }}
+                    </div>
+                </div>
+                <div *ngIf="pregunta.type === 'select'">
+                    <select formControlName="select">
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option *ngFor="let option of pregunta.options" [value]="option">{{ option }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Enviar</button>
+    </form>
+</div>

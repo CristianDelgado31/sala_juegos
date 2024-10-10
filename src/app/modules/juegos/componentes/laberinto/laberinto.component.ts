@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc, Timestamp} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-laberinto',
@@ -12,6 +13,8 @@ export class LaberintoComponent implements OnInit {
   gameInterval: any;
   score = 0;
   gameOver = false;
+
+  constructor(private firestore: Firestore) { }
 
   ngOnInit() {
     this.startGame();
@@ -48,6 +51,7 @@ export class LaberintoComponent implements OnInit {
     if (head.x < 0 || head.x >= boardSize || head.y < 0 || head.y >= boardSize) {
       this.gameOver = true; // Colisión con las paredes
       clearInterval(this.gameInterval);
+      this.guardarPuntaje();
       return;
     }
 
@@ -57,6 +61,7 @@ export class LaberintoComponent implements OnInit {
       if (head.x === this.snake[i].x && head.y === this.snake[i].y) {
         this.gameOver = true; // Colisión con el propio cuerpo
         clearInterval(this.gameInterval);
+        this.guardarPuntaje();
         return;
       }
     }
@@ -91,5 +96,16 @@ export class LaberintoComponent implements OnInit {
       case 'ArrowLeft': if (this.direction.x !== 1) this.direction = { x: -1, y: 0 }; break;
       case 'ArrowRight': if (this.direction.x !== -1) this.direction = { x: 1, y: 0 }; break;
     }
+  }
+
+  guardarPuntaje() {
+    // Guardar puntaje en base de datos
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const username = user.email.split('@')[0];
+    const fecha = Timestamp.fromDate(new Date());
+    const resultado = { email: user.email, fecha: fecha, juego: 'viborita', puntos: this.score, username: username };
+
+    const col = collection(this.firestore, 'resultados');
+    addDoc(col, resultado);
   }
 }

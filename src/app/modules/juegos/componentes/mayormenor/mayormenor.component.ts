@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc, Timestamp} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-mayormenor',
@@ -8,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class MayormenorComponent implements OnInit {
   cartaActual: string = '';
   cartaSiguiente: string = '';
-  puntos: number = 0;
+  puntos: number = 0; 
   mensaje: string = '';
   cartasUsadas: Set<string> = new Set(); // Almacena las cartas que ya han sido usadas
   cartasDisponibles: string[] = this.generarBaraja(); // Genera la baraja al inicio
   ultimaCarta: string = '';
+
+  constructor(private firestore: Firestore) { }
 
   ngOnInit(): void {
     this.sacarCarta();
@@ -83,16 +86,28 @@ export class MayormenorComponent implements OnInit {
     // Convertir la carta siguiente en la nueva carta actual
     this.cartaActual = this.cartaSiguiente; // Actualiza la carta actual
     this.cartaSiguiente = this.obtenerCarta(); // Obtiene la nueva carta siguiente
-    // console.log(this.cartasDisponibles);
-    // console.log(this.cartasUsadas);
   }
 
   reiniciarJuego(): void {
+    this.guardarPuntuacion();
+
     this.puntos = 0;
     this.mensaje = '';
     this.cartasUsadas.clear(); // Limpiar las cartas usadas
     this.cartasDisponibles = this.generarBaraja(); // Generar una nueva baraja
     this.sacarCarta(); // Sacar la primera carta
   }
-  
+
+  get cartasRestantes(): number {
+    return this.cartasDisponibles.length; // Devuelve la cantidad de cartas restantes
+  }
+
+  guardarPuntuacion() {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const username = user.email.split('@')[0]; // Obtener el nombre de usuario
+    const fecha = Timestamp.fromDate(new Date());
+
+    const resultado = { email: user.email, fecha, juego: 'mayormenor', puntos: this.puntos, username: username };
+    addDoc(collection(this.firestore, 'resultados'), resultado);
+  }
 }

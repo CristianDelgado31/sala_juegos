@@ -11,17 +11,21 @@ import { RuletaComponent } from './componentes/ruleta/ruleta.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BanderasService } from '../../services/preguntados/banderas.service';
 import { LaberintoComponent } from './componentes/laberinto/laberinto.component';
+import { ResultadosComponent } from './componentes/resultados/resultados.component';
 
 
 @NgModule({
-  declarations: [AhorcadoComponent, MayormenorComponent, PreguntadosComponent, PreguntadosMainComponent, RuletaComponent, LaberintoComponent],
+  declarations: [AhorcadoComponent, MayormenorComponent, PreguntadosComponent, 
+    PreguntadosMainComponent, RuletaComponent, LaberintoComponent, ResultadosComponent
+  ],
   exports: [
     AhorcadoComponent,
     MayormenorComponent,
     PreguntadosComponent,
     PreguntadosMainComponent,
     RuletaComponent,
-    LaberintoComponent
+    LaberintoComponent,
+    ResultadosComponent
   ],
   imports: [
     CommonModule,
