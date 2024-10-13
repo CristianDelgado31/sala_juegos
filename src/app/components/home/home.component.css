@@ -1,0 +1,143 @@
+/* .home-container {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .grid-item {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+   */
+   .bienvenido-section {
+    padding: 2.5rem; /* Aumentar el padding para más espacio */
+    text-align: center;
+    background: rgba(200, 230, 201, 0.8); /* Fondo verde claro con transparencia */
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    margin-bottom: 2rem; /* Margen inferior para separación */
+    margin-top: 5rem; /* Margen superior para separación */
+}
+
+.bienvenido-container {
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar en la página */
+}
+
+h1 {
+    color: #2c3e50; /* Color oscuro para un mejor contraste */
+    margin-bottom: 1rem;
+    font-size: 2.5rem; /* Tamaño de fuente más grande */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Sombra de texto para resaltar */
+}
+
+h2 {
+    color: #2c3e50; /* Color oscuro para un mejor contraste */
+    margin-bottom: 1rem;
+    font-size: 1.75rem; /* Tamaño de fuente más grande */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Sombra de texto para resaltar */
+}
+
+.juegos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem; /* Aumentar espacio entre juegos */
+    margin-top: 1.5rem;
+}
+
+.juego {
+  width: 250px; /* Ancho más grande para cada juego */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo casi transparente */
+  
+  border-radius: 12px; /* Bordes más redondeados */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.3s; /* Transición suave */
+  position: relative; /* Para posicionar el pseudo-elemento */
+  overflow: hidden; /* Evitar que el efecto sobresalga */
+}
+
+.juego::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px; /* Bordes redondeados */
+  background: linear-gradient(45deg, rgba(46, 204, 113, 0.5), rgba(0, 255, 0, 0.5)); /* Gradiente */
+  opacity: 0; /* Inicialmente oculto */
+  transition: opacity 0.3s; /* Transición suave */
+  z-index: 0; /* Detrás del contenido */
+}
+
+.juego:hover::before {
+  opacity: 1; /* Mostrar el gradiente al pasar el mouse */
+}
+
+.juego:hover {
+  transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el mouse */
+  border-color: #27ae60; /* Cambiar color del borde al pasar el mouse */
+  z-index: 1; /* Traer el contenido al frente */
+}
+
+
+.juego-imagen {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: 200px; /* Altura más manejable */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarla */
+    border-top-left-radius: 12px; /* Bordes redondeados en la parte superior */
+    border-top-right-radius: 12px; /* Bordes redondeados en la parte superior */
+}
+
+.accion-boton {
+  background-color: #27ae60; /* Color verde oscuro para el botón */
+  color: white;
+  border: none;
+  width: 100%; /* Ancho del botón igual al contenedor del juego */
+  padding: 0.7rem; /* Mantener el padding vertical */
+  border-radius: 6px; /* Bordes redondeados */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+  margin-top: 0.5rem; /* Espacio entre la imagen y el botón */
+  font-size: 1rem; /* Tamaño de fuente del botón */
+}
+
+
+.accion-boton:hover {
+    background-color: #1e7e4d; /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de aumento */
+}
+
+h1, h2, .accion-boton {
+  font-family: 'Press Start 2P', cursive; /* Aplica la fuente a estos elementos */
+}
+
+
+
+@media (max-width: 768px) {
+  .bienvenido-section {
+    margin-top: 2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem; /* Tamaño más pequeño en mobile */
+  }
+
+  h2 {
+    font-size: 1.1rem; /* Tamaño más pequeño en mobile */
+  }
+}

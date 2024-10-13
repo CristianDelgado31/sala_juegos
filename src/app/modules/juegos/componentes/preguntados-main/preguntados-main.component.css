@@ -1,0 +1,101 @@
+/* Contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
+    min-height: 70vh; /* Mantener altura mínima */
+    margin: 0 auto; /* Centrar el contenedor */
+    width: 90%; /* Hacerlo más ancho */
+    max-width: 700px; /* Máximo ancho */
+    background-color: #1b1b1b;
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno ajustado */
+    margin-top: 8px;
+    box-shadow: 0 10px 30px rgba(255, 145, 0, 0.5); /* Sombra más intensa */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+}
+
+/* Efecto hover para el contenedor */
+.container:hover {
+    transform: scale(1.02); /* Escalar ligeramente al pasar el mouse */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el mouse */
+}
+
+/* Logo */
+.logo-preguntados {
+    width: 100%; /* Hacer la imagen responsiva */
+    max-width: 800px; /* Tamaño máximo de la imagen */
+    height: 300px; /* Mantiene la proporción */
+    margin-bottom: 20px; /* Espacio entre la imagen y el título */
+    transition: transform 0.3s, filter 0.3s; /* Transiciones suaves */
+}
+
+/* Efecto hover para el logo */
+.logo-preguntados:hover {
+    transform: rotate(5deg); /* Rotar ligeramente al pasar el mouse */
+    filter: brightness(1.1); /* Aumentar brillo al pasar el mouse */
+}
+
+/* Título */
+.titulo-ruleta {
+    font-size: 2em; /* Tamaño del título */
+    color: #e74c3c; /* Color rojo brillante */
+    margin-bottom: 15px; /* Espacio inferior */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Sombra de texto más definida */
+    font-family: 'Press Start 2P', cursive; /* Fuente estilo retro */
+    text-align: center; /* Centrar texto */
+}
+
+/* Botón de inicio */
+.btn-iniciar {
+    padding: 12px 260px; /* Espaciado del botón */
+    font-size: 1.5em; /* Tamaño de fuente más grande */
+    color: #fff; /* Color del texto */
+    background-color: #007bff; /* Color de fondo del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra del botón */
+    font-family: 'Press Start 2P', cursive; /* Fuente estilo retro */
+    margin-top: 20px; /* Margen superior */
+
+}
+
+/* Efecto hover para el botón */
+.btn-iniciar:hover {
+    background-color: #0056b3; /* Cambiar color al pasar el mouse */
+    transform: translateY(-3px); /* Levantar ligeramente el botón */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el mouse */
+}
+
+/* Responsive para celular */
+@media (max-width: 576px) {
+    .container {
+        padding: 16px; /* Reducir espaciado interno */
+    }
+
+    .logo-preguntados {
+        width: 100%; /* Asegurarse de que la imagen se ajuste */
+        max-width: 100vw; /* Tamaño máximo de la imagen */
+    }
+
+    .titulo-ruleta {
+        font-size: 1.5em; /* Reducir tamaño del título */
+    }
+
+    .btn-iniciar {
+        padding: 8px 30vw; /* Reducir espaciado del botón */
+        font-size: 1em; /* Reducir tamaño de fuente */
+        margin-top: 10px; /* Espacio superior */
+    }
+}
+
+/* Estilo para párrafos */
+p {
+    color: #fff;
+    font-size: 1.1em; /* Ajustar tamaño de fuente */
+    font-family: 'Press Start 2P', cursive;
+    text-align: center; /* Centrar texto */
+}

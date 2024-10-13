@@ -1,0 +1,54 @@
+* {
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente a todos los elementos */
+}
+
+mat-card {
+    max-width: 1000px; /* Aumentar el ancho máximo */
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9; /* Color de fondo claro */
+}
+
+mat-card-header {
+    background-color: #3f51b5; /* Color de encabezado */
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 16px;
+}
+
+mat-card-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente a todos los elementos */
+}
+
+mat-form-field {
+    width: 100%; /* Asegura que los campos ocupen todo el ancho */
+    margin-bottom: 2px; /* Espaciado entre campos */
+    margin-top: 10px;
+}
+
+
+.full-width {
+    width: 100%; /* Asegura que los elementos ocupen todo el ancho */
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente a todos los elementos */
+}
+
+.full-width div {
+    margin-bottom: 8px; /* Espacio entre cada checkbox/radio button */
+}
+
+
+button {
+    margin-top: 20px; /* Espacio entre los campos y el botón */
+    padding: 12px;
+    font-size: 1em; /* Aumenta el tamaño del texto del botón */
+}
+
+
+small {
+    color: red;
+    font-size: 8px;
+}

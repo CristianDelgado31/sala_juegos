@@ -1,0 +1,14 @@
+<!-- <div class="background-container"> -->
+    <div class="container">
+        <div class="introduccion" *ngIf="!juegoIniciado">
+            <img src="images/preguntados/fondo_banderas2.jpg" alt="Logo de Preguntados" class="logo-preguntados" />
+            <h2 class="titulo-ruleta">¡Bienvenido a Preguntados!</h2>
+            <p>Haz clic en el botón para comenzar a jugar.</p>
+            <button (click)="iniciarJuego()" class="btn-iniciar">Comenzar</button>
+        </div>
+    
+        <app-ruleta *ngIf="juegoIniciado && !temaSeleccionado"></app-ruleta>
+        <app-preguntas *ngIf="temaSeleccionado" [tema]="temaSeleccionado"></app-preguntas>
+    </div>
+    <!-- </div> -->
+    

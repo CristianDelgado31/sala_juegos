@@ -1,0 +1,126 @@
+.preguntas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 40px; /* Ajusta este valor según sea necesario */
+  }
+  
+  
+  .preguntas-container:hover {
+    transform: scale(1.02); /* Escalado al pasar el mouse */
+  }
+  
+  .preguntas-container h2 {
+    margin-bottom: 20px;
+    color: #2c3e50; /* Color de texto más oscuro */
+    font-size: 1.8em; /* Aumento de tamaño de fuente */
+    text-align: center;
+  }
+  
+  .pregunta {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #34495e; /* Color de texto suave */
+    text-align: center;
+  }
+  
+  .preguntas-container ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%; /* Para ajustar los elementos a su contenedor */
+  }
+  
+  .preguntas-container .opcion {
+    padding: 15px; /* Aumento de espacio interior */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Bordes redondeados */
+    margin-bottom: 10px;
+    background-color: #ecf0f1; /* Color de fondo suave */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+    cursor: pointer;
+    text-align: center; /* Centrar texto */
+  }
+  
+  .preguntas-container .opcion:hover {
+    background-color: #bdc3c7; /* Color de fondo al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de levantamiento */
+  }
+  
+  .preguntas-container img {
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 12px; /* Bordes redondeados */
+    margin-bottom: 20px; /* Espacio inferior */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para las imágenes */
+  }
+  
+  .mensaje {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .correcto {
+    color: #27ae60; /* Color verde para respuestas correctas */
+  }
+  
+  .incorrecto {
+    color: #e74c3c; /* Color rojo para respuestas incorrectas */
+  }
+  
+  .no-preguntas {
+    color: #7f8c8d; /* Color para mensajes de no disponibilidad */
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+  .preguntas-container .opcion.disabled {
+    cursor: not-allowed; /* Cambia el cursor */
+    opacity: 0.5; /* Reduce la opacidad */
+  }
+  
+  .no-preguntas {
+    background-color: #f8d7da; /* Color de fondo suave */
+    color: #721c24; /* Color del texto */
+    border: 1px solid #f5c6cb; /* Borde para destacar */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center; /* Centrar el texto */
+    margin: 20px; /* Espaciado externo */
+    font-family: Arial, sans-serif; /* Fuente */
+    font-size: 18px; /* Tamaño de fuente */
+  }
+  
+  .reiniciar {
+    background-color: #3498db; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1.2em; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor */
+    transition: background-color 0.3s; /* Transición suave */
+    width: 100%;
+  }
+
+.corazones {
+  display: flex;
+  justify-content: center; /* Centrar los corazones */
+  margin-top: 20px; /* Espacio superior */
+}
+
+.corazon {
+    width: 40px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción */
+    margin: 0 10px; /* Espacio entre los corazones */
+}
+

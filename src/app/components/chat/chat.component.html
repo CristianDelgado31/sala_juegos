@@ -1,0 +1,29 @@
+@if(userInLocalStorage) {
+    <div class="chat-icon" (click)="toggleChat()">
+        <i class="fa-brands fa-rocketchat"></i>
+    </div>
+
+    <div *ngIf="isChatVisible" class="chat-container">
+        <div class="chat-header">
+            <h2>Chat</h2>
+            <i class="fa-solid fa-x close-chat" (click)="toggleChat()"></i>
+        </div>
+        
+        <div class="chat-messages" #chatMessages>
+            <div *ngFor="let message of MessagesCollection" class="message" 
+                 [ngClass]="{'my-message': message.usuario === currentUser, 'other-message': message.usuario !== currentUser}">
+                <span class="sender">{{ message.usuario === currentUser ? 'yo' : message.usuario }}</span>
+                <span class="text">{{ message.mensaje }}</span>
+                <!-- <span class="timestamp">{{ message.fecha ? (message.fecha | date: 'shortTime') : 'Sin hora' }} - {{ message.fecha ? (message.fecha | date: 'shortDate') : 'Sin fecha' }}</span> -->
+                <span class="timestamp">
+                    {{ message.fecha ? (message.fecha | date: 'dd/MM/yy HH:mm') : 'Sin hora' }}
+                </span>
+            </div>
+        </div>
+        
+        <form (ngSubmit)="sendMessage()" class="chat-input">
+            <input [(ngModel)]="newMessage" name="message" placeholder="Escribe un mensaje..." required autocomplete="off">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+}

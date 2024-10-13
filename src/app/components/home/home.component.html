@@ -1,0 +1,34 @@
+<section class="bienvenido-section">
+  <div class="bienvenido-container">
+    <h1>¡BIENVENIDO!</h1>
+
+    <h2>Lista de juegos</h2>
+    <div class="juegos-container">
+      <div (click)="redirigirAJuego('preguntados')" routerLink="encuesta" class="juego">
+        <a>
+          <img src="icono_juegos/globo_terraqueo2.jpg" alt="Juego 1" class="juego-imagen">
+        </a>
+        <button class="accion-boton btn_juegos">Preguntados</button>
+      </div>
+      <div (click)="redirigirAJuego('ahorcado')" class="juego">
+        <a>
+          <img src="icono_juegos/ahorcado.png" alt="Juego 2" class="juego-imagen">
+        </a>
+        <button class="accion-boton btn_juegos">Ahorcado</button>
+      </div>
+      <div (click)="redirigirAJuego('mayor-menor')" class="juego">
+        <a>
+          <img src="icono_juegos/mayor_menor.jpg" alt="Juego 3" class="juego-imagen">
+        </a>
+        <button class="accion-boton btn_juegos">Mayor o Menor</button>
+      </div>
+      <div (click)="redirigirAJuego('viborita')" class="juego">
+        <a>
+          <img src="icono_juegos/viborita2.png" alt="Juego 4" class="juego-imagen">
+        </a>
+        <button class="accion-boton btn_juegos">Viborita</button>
+      </div>
+    </div>
+  </div>
+</section>
+  

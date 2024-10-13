@@ -1,0 +1,13 @@
+<div class="game-container">
+    <h1 class="game-title">Juego de la Viborita</h1>
+    <div class="game-board">
+        <div *ngFor="let segment of snake" 
+             [ngStyle]="{'left': segment.x * 20 + 'px', 'top': segment.y * 20 + 'px'}" 
+             class="snake-segment"></div>
+        <div [ngStyle]="{'left': food.x * 20 + 'px', 'top': food.y * 20 + 'px'}" class="food"></div>
+    </div>
+    <div *ngIf="gameOver" class="game-over">
+        <p>Game Over! Puntuación: {{ score }}</p>
+        <button (click)="startGame()" class="restart-button">Reiniciar</button>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+.menu {
+  background-color: #000000; /* Fondo negro del menú */
+  color: #ffffff; /* Color del texto en blanco */
+  padding: 1rem; /* Aumentar el padding vertical a 1.5rem y mantener horizontal en 1rem */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el menú */
+  display: flex; /* Usar flexbox para alinear los elementos */
+  flex-direction: column; /* Asegura que los elementos estén en columna */
+}
+
+.menu .mat-menu-item {
+  color: #ffffff !important; /* Color blanco para los elementos del menú */
+  display: block; /* Asegura que cada elemento ocupe el ancho completo */
+  width: 100%; /* Ocupar todo el ancho */
+  text-align: left; /* Alinear el texto a la izquierda */
+}
+
+.menu .mat-menu-item:hover {
+  background-color: rgba(255, 204, 0, 0.2); /* Fondo amarillo al pasar el mouse */
+}
+
+
+.toolbar {
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: #ffffff; /* Color del texto en blanco */
+  padding: 2.5rem 1rem; /* Aumentar el padding vertical a 1.5rem y mantener horizontal en 1rem */
+  display: flex; /* Usar flexbox para alinear los elementos */
+  align-items: center; /* Centrar verticalmente */
+}
+
+
+.fa-gamepad {
+  font-size: 56px; /* Aumentar el tamaño del icono */
+  color: #ffcc00; /* Color amarillo para el icono */
+  margin-left: 10px;
+  transition: transform 0.3s; /* Transición para efecto al pasar el ratón */
+}
+
+.fa-gamepad:hover {
+  transform: scale(1.1); /* Aumentar el tamaño del icono al pasar el ratón */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.menu-button,
+.botones {
+  color: #ffffff !important; /* Color blanco para el botón de menú */
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive; /* Aplica la fuente a los botones */
+}
+
+.botones {
+  color: #ffcc00 !important; /* Color amarillo para los botones */
+  border: 2px solid transparent; /* Sin borde por defecto */
+  transition: all 0.3s ease; /* Transición suave */
+  margin: 0 0.5rem; /* Margen entre botones */
+  background-color: transparent; /* Fondo transparente por defecto */
+  font-size: 0.75rem; /* Tamaño de fuente del botón */
+  font-family: 'Press Start 2P', cursive; /* Aplica la fuente a los botones */
+}
+
+
+.botones:hover {
+  background-color: rgba(255, 204, 0, 0.1); /* Fondo al pasar el mouse */
+  border: 2px solid #ffcc00; /* Borde amarillo al pasar el mouse */
+  color: #ffcc00 !important; /* Asegurarse que el texto siga siendo amarillo */
+}
+
+.email-display {
+  color: #eeeeee; /* Color amarillo para el email */
+  font-weight: bold; /* Negrita para destacar */
+  margin-right: 10px; /* Espaciado a la derecha */
+  font-family: 'Press Start 2P', cursive; /* Aplica la fuente */
+}
+
+.btn_logout {
+  color: #fb1010 !important; /* Color rojo para el botón de logout */
+  border: 2px solid transparent; /* Sin borde por defecto */
+  transition: all 0.3s ease; /* Transición suave */
+  margin: 0 0.5rem; /* Margen entre botones */
+  background-color: transparent; /* Fondo transparente por defecto */
+  font-size: 0.75rem; /* Tamaño de fuente del botón */
+  font-family: 'Press Start 2P', cursive; /* Aplica la fuente */
+}
+
+.btn_logout:hover {
+  background-color: rgba(251, 16, 16, 0.1); /* Fondo claro al pasar el mouse */
+  border: 2px solid #fb1010; /* Borde rojo al pasar el mouse */
+  color: #fb1010 !important; /* Mantener el color rojo al pasar el mouse */
+}
+
+
+
+
+/* OPCIONAL: Darle estilos al menu en modo responsivo de celular */
+
+@media (max-width: 600px) {
+  .email-display {
+    font-size: 11px;
+  }
+  
+  /* .btn_logout {
+    color: red !important;
+  } */
+
+  .btn_login_movil {
+    color: red !important;
+  }
+
+
+}

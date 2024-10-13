@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.app-container {
+    min-height: calc(100vh - 152px); /* Ajusta según la altura de tu navbar y footer */
+    display: flex;
+    flex-direction: column;
+    background: url('../assets/gifs/bosque.gif') no-repeat center center; /* Fondo GIF */
+    background-size: cover; /* Asegura que el GIF cubra toda la sección */
+}
+
+app-footer {
+    flex-shrink: 0; /* Evita que el footer se expanda */
+}
+
+h1, h2, .accion-boton {
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente a estos elementos */
+}
+
+* {
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente a todos los elementos */
+}

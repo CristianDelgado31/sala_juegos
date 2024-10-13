@@ -1,0 +1,118 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asegura que el footer esté en la parte inferior */
+  }
+  
+  .alumno-container {
+    max-width: 1075px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: auto; /* Centra el contenedor */
+    flex-grow: 1; /* Permite que el contenedor crezca */
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+  }
+  
+  .content-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .alumno-image {
+    max-width: 200px; /* Ajusta según tu imagen */
+    border-radius: 10%;
+    border: 3px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-section {
+    flex: 2;
+    padding-left: 20px; /* Espacio entre imagen y contenido */
+  }
+  
+  /* Estilo para encabezados */
+  h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.8em;
+    color: #444;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 15px;
+  }
+  
+  p {
+    font-size: 1em;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(245, 245, 245, 0.8);
+    border-radius: 8px;
+  }
+  
+  ul {
+    text-align: left;
+    margin-left: 20px;
+    list-style-type: disc;
+  }
+  
+  li {
+    font-size: 1em;
+    color: #444;
+  }
+  
+  strong {
+    color: #000;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .content-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .image-section {
+      margin-bottom: 20px; /* Espacio en móvil */
+    }
+  
+    h1 {
+      font-size: 1.7em;
+    }
+  
+    h2, h3 {
+      font-size: 1em;
+    }
+  
+    p {
+      font-size: 0.9em;
+    }
+  }
+  

@@ -1,0 +1,170 @@
+.mayor-menor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1b1b1b; /* Fondo oscuro */
+  border-radius: 20px; /* Bordes más redondeados */
+  box-shadow: 0 10px 30px rgba(255, 145, 0, 0.5); /* Sombra más intensa */
+  padding: 20px; /* Espaciado interno */
+  max-width: 90%; /* Ajustar para que ocupe más espacio en pantallas grandes */
+  width: 800px; /* Ancho fijo para evitar que se haga demasiado grande */
+  margin: auto; /* Centrar el contenedor */
+  height: auto; /* Ajustar altura automáticamente */
+  transition: transform 0.3s, box-shadow 0.3s; /* Suave animación al escalar */
+  margin-top: 8px !important;
+}
+
+.mayor-menor-container:hover {
+  transform: scale(1.02); /* Escalar ligeramente al pasar el mouse */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el mouse */
+}
+
+.mayor-menor-container .titulo {
+  color: #e74c3c !important; /* Cambia por el color deseado */
+  font-size: 2rem; /* Tamaño ajustado */
+}
+
+.cartas-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espacio entre cartas */
+  margin: 20px 0; 
+}
+
+.carta {
+  width: 250px; /* Ajustar tamaño según sea necesario */
+  border-radius: 15px; 
+  transition: transform 0.3s, box-shadow 0.3s; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.carta:hover {
+  transform: scale(1.05); /* Aumentar tamaño al pasar el mouse */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; 
+}
+
+.botones button {
+  margin: 0 5px; 
+  padding: 12px 25px; /* Aumentar tamaño del botón */
+  font-size: 18px; /* Tamaño de fuente más grande */
+  font-weight: bold; 
+  cursor: pointer;
+  background: linear-gradient(135deg, #007bff, #0056b3); /* Degradado */
+  color: white; 
+  border: none; 
+  border-radius: 8px; /* Bordes más redondeados */
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.botones button:hover {
+  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+  transform: translateY(-2px); /* Efecto de elevación */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+}
+
+.or-text {
+  font-size: 24px; /* Aumentar tamaño del texto */
+  font-weight: bold; /* Negrita */
+  color: #fff; /* Color blanco */
+  padding: 5px 10px; /* Espaciado interno */
+  border-radius: 12px; /* Bordes redondeados */
+  transition: transform 0.3s, background-color 0.3s; /* Transiciones suaves */
+}
+
+.or-text:hover {
+  transform: scale(1.1); /* Efecto de escalado */
+}
+
+.puntos, .cartas-restantes {
+  font-size: 16px; 
+  font-weight: bold;
+  margin-top: 10px; 
+  color: #007bff; 
+  text-align: center; 
+}
+
+.mensaje {
+  margin-top: 20px;
+  font-size: 18px; 
+  font-weight: 600; 
+  color: #e74c3c; /* Color rojo para el mensaje */
+  text-align: center; 
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo más oscuro para el mensaje */
+  border-radius: 10px; 
+  padding: 10px; 
+  transition: transform 0.3s, background-color 0.3s; /* Suave transición */
+}
+
+.mensaje:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Cambiar el fondo al pasar el mouse */
+  transform: scale(1.02); /* Efecto de escalado al pasar el mouse */
+}
+
+.reiniciar-boton {
+  margin-top: 20px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  border-radius: 5px; 
+  background-color: #4CAF50; /* Verde */
+  color: white; /* Texto blanco */
+  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+.reiniciar-boton:hover {
+  background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Aumentar tamaño ligeramente al pasar el mouse */
+}
+
+.reiniciar-boton:active {
+  transform: scale(0.95); /* Disminuir tamaño al hacer clic */
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 600px) {
+  .mayor-menor-container {
+      padding: 15px; /* Reducir el espaciado interno */
+      width: 95%; /* Aumentar el ancho en pantallas pequeñas */
+  }
+
+  .titulo {
+      font-size: 5vw !important; /* Ajustar tamaño de fuente */
+      text-align: center; /* Centrar título */
+  }
+
+  .cartas-container {
+      flex-direction: column; /* Apilar cartas en móvil */
+      align-items: center; /* Centrar las cartas */
+  }
+
+  .carta {
+      width: 80%; /* Ajustar tamaño de la carta en móviles */
+      max-width: 200px; /* Tamaño máximo para no exceder */
+  }
+
+  .botones button {
+      padding: 8px 15px; /* Reducir tamaño del botón */
+      font-size: 14px; /* Ajustar tamaño de fuente */
+  }
+
+  .puntos, .cartas-restantes {
+      font-size: 14px; /* Reducir tamaño de fuente */
+  }
+
+  .mensaje {
+      font-size: 16px; /* Ajustar tamaño de fuente del mensaje */
+  }
+
+  .reiniciar-boton {
+      padding: 8px 15px; /* Reducir tamaño del botón */
+      font-size: 14px; /* Ajustar tamaño de fuente */
+  }
+}

@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="toolbar">
+  <a routerLink="home" aria-label="Inicio">
+    <i class="fa-solid fa-gamepad"></i>
+  </a>
+  <span class="spacer"></span>
+
+  <!-- Muestra el email del usuario y el botón de Logout -->
+  <span *ngIf="userInLocalStorage" class="email-display">{{ userEmail }}</span>
+
+  <button mat-button *ngIf="isMobile" [matMenuTriggerFor]="menu" class="menu-button">Menu</button>
+
+  <ng-container *ngIf="!isMobile">
+    <button mat-button routerLink="home" class="botones">Inicio</button>
+    <button mat-button routerLink="/quien-soy" class="botones">Sobre mí</button>
+    
+    <button mat-button *ngIf="!userInLocalStorage" routerLink="/login" class="botones">Login</button>
+    <button mat-button *ngIf="!userInLocalStorage" routerLink="/registro" class="botones">Registrarse</button>
+    <button mat-button *ngIf="userInLocalStorage" routerLink="/encuesta" class="botones">Encuesta</button>
+    <button mat-button *ngIf="userInLocalStorage" routerLink="/juegos/resultados" class="botones">Ranking</button>
+    
+    <button mat-button (click)="logOut()" class="btn_logout" *ngIf="userInLocalStorage">Logout</button>
+  </ng-container>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu" class="menu" id="menu">
+  <button mat-menu-item routerLink="/home" class="a">Inicio</button>
+  <button mat-menu-item routerLink="/quien-soy" class="a">Sobre mí</button>
+  <button mat-menu-item routerLink="/login" class="a" *ngIf="!userInLocalStorage">Login</button>
+  <button mat-menu-item routerLink="/registro" class="a" *ngIf="!userInLocalStorage">Registrarse</button>
+  <button mat-menu-item *ngIf="userInLocalStorage" routerLink="/encuesta" class="a">Encuesta</button>
+  <button mat-menu-item *ngIf="userInLocalStorage" routerLink="/juegos/resultados" class="a">Ranking</button>
+  <button mat-menu-item (click)="logOut()" class="btn_login_movil" *ngIf="userInLocalStorage">Logout</button>
+</mat-menu>
+
+

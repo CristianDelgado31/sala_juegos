@@ -1,0 +1,85 @@
+body, html {
+    height: 100%; /* Asegurarse de que el body ocupe toda la altura */
+    margin: 0; /* Sin márgenes */
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    background-color: #ecf0f1; /* Fondo claro para el cuerpo */
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar elementos dentro del contenedor */
+}
+
+.game-title {
+    font-size: 36px; /* Aumentar tamaño de la fuente */
+    color: #e74c3c; /* Color rojo para el mensaje */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    text-align: center; /* Centrar el texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más definida */
+    transition: transform 0.3s; /* Efecto de transición */
+}
+
+.game-title:hover {
+    transform: scale(1.05); /* Efecto de escalado al pasar el mouse */
+}
+
+.game-board {
+    position: relative;
+    width: 500px; /* Aumentar el ancho del tablero */
+    height: 500px; /* Aumentar la altura del tablero */
+    background-color: #ffffff; /* Fondo blanco para el tablero */
+    border: 2px solid #2980b9; /* Borde azul */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+.snake-segment {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #27ae60; /* Color verde más atractivo */
+    border-radius: 4px; /* Bordes redondeados para los segmentos de la serpiente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para los segmentos */
+}
+
+.food {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #e74c3c; /* Rojo brillante para la comida */
+    border-radius: 50%; /* Hacer que la comida sea circular */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave para la comida */
+}
+
+.game-over {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px; /* Tamaño de fuente para el mensaje de Game Over */
+    color: #e74c3c; /* Color rojo para el mensaje de Game Over */
+}
+
+.restart-button {
+    background-color: #2980b9; /* Color de fondo azul */
+    color: white; /* Color del texto */
+    font-size: 20px; /* Aumentar tamaño de la fuente */
+    border: none; /* Sin bordes */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 12px 24px; /* Espaciado interior aumentado */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+    margin-top: 20px; /* Espacio superior */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para efecto elevado */
+}
+
+.restart-button:hover {
+    background-color: #3498db; /* Color al pasar el mouse */
+    transform: scale(1.05); /* Efecto de escalado */
+}
+
+.restart-button:active {
+    background-color: #2980b9; /* Color al hacer clic */
+    transform: scale(0.95); /* Efecto de reducción al hacer clic */
+}

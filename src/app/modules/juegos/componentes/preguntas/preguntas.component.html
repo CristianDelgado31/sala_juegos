@@ -1,0 +1,43 @@
+<div class="preguntas-container" *ngIf="preguntaActual">
+    <h2>Preguntas de {{ tema }}</h2>
+    
+    <!-- Mostrar la bandera correspondiente -->
+    <img *ngIf="banderaUrl" [src]="banderaUrl" alt="Bandera" class="bandera" />
+  
+    <p class="pregunta">{{ preguntaActual.pregunta }}</p>
+    
+    <ul>
+      <li *ngFor="let opcion of preguntaActual.opciones" 
+          (click)="puedeSeleccionar ? verificarRespuesta(opcion) : null" 
+          [class.disabled]="!puedeSeleccionar"
+          class="opcion">
+        {{ opcion }}
+      </li>
+    </ul>
+    
+    <div *ngIf="mensaje" class="mensaje" 
+         [ngClass]="{'correcto': mensaje.includes('Correcta'), 'incorrecto': mensaje.includes('Incorrecta')}">
+      {{ mensaje }}
+    </div>
+  </div>
+
+  <!-- Agregar los corazones -->
+  <div class="corazones">
+    @if(vidas === 3){
+      <img src="gifs/pixel-heart.gif" alt="Corazón" class="corazon" />
+      <img src="gifs/pixel-heart.gif" alt="Corazón" class="corazon" />
+      <img src="gifs/pixel-heart.gif" alt="Corazón" class="corazon" />
+    } @else if(vidas === 2){
+      <img src="gifs/pixel-heart.gif" alt="Corazón" class="corazon" />
+      <img src="gifs/pixel-heart.gif" alt="Corazón" class="corazon" />
+    } @else if(vidas === 1){
+      <img src="gifs/pixel-heart.gif" alt="Corazón" class="corazon" />
+    }
+  </div>
+  
+  <button *ngIf="vidas === 0" (click)="reiniciarJuego()" class="reiniciar">Reiniciar</button>
+  
+  <div *ngIf="!preguntaActual" class="no-preguntas">
+    <p>No hay preguntas disponibles para este continente.</p>
+  </div>
+  

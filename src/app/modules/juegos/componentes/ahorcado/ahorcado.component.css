@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Para un mejor manejo del padding y margin */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column; /* Alinear en columna */
+    min-height: 80vh; /* Mantener al menos la altura de la pantalla */
+    margin-top: 10px;
+}
+
+.ahorcado-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: flex-start; /* Alinear al inicio para evitar empujar el footer */
+    padding: 20px; /* Padding uniforme */
+    background-color: #1b1b1b; /* Color de fondo oscuro */
+    box-shadow: 0 10px 30px rgba(255, 145, 0, 0.5); /* Sombra más intensa */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 40px 50px; /* Espaciado interno */
+    max-width: 100%; /* Limitar el ancho del contenedor en móviles */
+    margin: auto; /* Centrar el contenedor */
+}
+
+.ahorcado-container:hover{
+    transform: scale(1.02); /* Escalar ligeramente al pasar el mouse */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el mouse */
+}
+
+h1 {
+    color: #e74c3c; /* Color rojo brillante */
+    margin-bottom: 20px;
+    font-size: 2.5rem; /* Aumentar el tamaño del título */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Agregar sombra */
+}
+
+h2 {
+    color: #495057; /* Color oscuro */
+    margin: 15px 0;
+    font-size: 2rem; /* Aumentar tamaño de fuente */
+    text-align: center; /* Centrar el texto */
+    font-weight: bold; /* Hacerlo más negrita */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+    letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+select, button {
+    width: 100%; /* Hacer que el selector y el botón ocupen todo el ancho */
+    font-family: 'Press Start 2P', cursive; /* Fuente estilo retro */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem; /* Tamaño de fuente uniforme */
+    transition: background-color 0.3s;
+    margin: 0px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Cambiar color al pasar el mouse */
+    transform: translateY(-3px); /* Levantar ligeramente el botón */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el mouse */
+}
+
+.botones-letras {
+    margin: 20px 0;
+    display: flex; /* Usar flex para alinear los botones */
+    flex-wrap: wrap; /* Permitir que los botones se envuelvan */
+    justify-content: center; /* Centrar los botones */
+}
+
+.letra-boton {
+    background-color: #1e231f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 20%; /* Ancho relativo para permitir que se ajusten */
+    height: 50px; /* Altura fija para las letras */
+    font-size: 1.5rem; /* Tamaño de fuente uniforme para las letras */
+}
+
+.letra-boton:hover {
+    background-color: #3360d3;
+}
+
+.ahorcado-dibujo {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Centrar la imagen */
+}
+
+.muñeco {
+    width: 100%; /* Ajustar al ancho del contenedor */
+    max-width: 200px; /* Limitar el tamaño máximo */
+    height: auto;
+}
+
+.mensaje {
+    margin-top: 20px;
+    font-size: 1.8rem; /* Aumentar tamaño del texto */
+    color: #ffffff; /* Cambiar color a blanco para mejor contraste */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    padding: 15px; /* Agregar padding */
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center; /* Centrar el texto */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.mensaje-victoria {
+    color: #1ca53c; /* Color verde para mensajes de victoria */
+}
+
+.mensaje-perdido {
+    color: #dc3545; /* Color rojo para mensajes de derrota */
+}
+
+.boton-reintentar {
+    background-color: #ffc107; /* Color amarillo */
+    color: black;
+    padding: 12px 20px; /* Aumentar padding */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 1.5rem; /* Tamaño de fuente mayor */
+    margin-top: 15px; /* Espaciado superior */
+    border: none; /* Sin borde */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+.boton-reintentar:hover {
+    background-color: #e0a800; /* Color al pasar el cursor */
+    transform: scale(1.05); /* Efecto de aumento al pasar el cursor */
+}
+
+.palabra {
+    margin: 20px 0; /* Espacio vertical */
+    display: flex; /* Usar flex para alinear */
+    justify-content: center; /* Centrar las rayas */
+    font-size: 2rem; /* Tamaño de fuente */
+}
+
+.letra {
+    margin: 0 10px; /* Espacio horizontal entre letras */
+    display: inline-block; /* Para que el margen funcione correctamente */
+    width: 30px; /* Ancho fijo para mantener la alineación */
+    text-align: center; /* Centrar texto en cada letra */
+    color: #fafafa; /* Color azul para las rayas */
+    transition: color 0.3s; /* Transición suave */
+}
+
+.letra:empty {
+    color: transparent; /* Hacer la letra invisible cuando no está adivinada */
+}
+
+.letra-correcta {
+    background-color: #28a745; /* Color verde para letras correctas */
+    cursor: not-allowed; /* Cambiar el cursor para indicar que no se puede hacer clic */
+}
+
+.letra-incorrecta {
+    background-color: #dc3545; /* Color rojo para letras incorrectas */
+    cursor: not-allowed; /* Cambiar el cursor para indicar que no se puede hacer clic */
+}
+
+select {
+    padding: 10px;
+    font-size: 1rem; /* Tamaño de fuente uniforme */
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    outline: none;
+    width: 100%; /* Hacer que el selector ocupe todo el ancho */
+    background-color: #ffffff; /* Fondo blanco */
+    color: #495057; /* Color del texto */
+    transition: border-color 0.3s; /* Transición suave para el borde */
+}
+
+select:focus {
+    border-color: #007bff; /* Cambiar el color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
+}
+
+
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 4vw; /* Reducir tamaño de fuente en móviles */
+    }
+
+    h2 {
+        font-size: 2.5vw; /* Reducir tamaño de fuente en móviles */
+    }
+
+    .letra-boton {
+        width: 25%; /* Ajustar el ancho de los botones en móviles */
+    }
+    
+    .letra {
+        font-size: 1.5rem; /* Tamaño de fuente más pequeño para letras */
+    }
+
+    select {
+        font-size: 0.6rem; /* Tamaño de fuente más pequeño para selectores */
+    }
+}

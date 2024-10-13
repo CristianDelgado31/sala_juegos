@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Para un mejor manejo del padding y margin */
+}
+
+.ruleta-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #393333; /* Fondo suave para el contenedor */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para un efecto elevado */
+  padding: 20px; /* Espaciado interno */
+  width: 90%; /* Hacerlo más ancho */
+  max-width: 600px; /* Aumentar el ancho máximo para PC */
+  margin: auto; /* Centrar el contenedor */
+}
+
+.vara {
+  height: 70px;
+  width: 15px;
+  background-color: #aaa;
+  margin: auto;
+  position: relative;
+  top: 10px;
+  border-radius: 0px 0px 8px 8px;
+  border: 1px solid #000;
+  border-top: 5px solid #000;
+  z-index: 1000;
+}
+
+img {
+  z-index: 100;
+  transition: all 5s;
+  max-width: 100%; /* Se ajusta al ancho del contenedor */
+  height: 450px; /* Mantiene la proporción de la imagen */
+  border-radius: 10px; /* Bordes redondeados para la ruleta */
+}
+
+.contador {
+  font-size: 1.5em; /* Tamaño de fuente más grande */
+  color: #333; /* Color del texto */
+  margin-top: 20px; /* Espacio superior */
+}
+
+.elije {
+  font-size: 1.5em; /* Aumentar el tamaño de fuente */
+  color: #2980b9; /* Color atractivo para el mensaje */
+  margin-top: 20px; /* Espacio superior */
+  text-align: center; /* Centrar el texto */
+  padding: 10px; /* Espaciado interno para un mejor aspecto */
+  background-color: rgba(41, 128, 185, 0.1); /* Fondo suave y semitransparente */
+  border: 2px solid #2980b9; /* Bordes definidos */
+  border-radius: 8px; /* Bordes redondeados */
+  transition: all 0.3s ease; /* Suave transición para efectos */
+}
+
+.elije:hover {
+  background-color: rgba(41, 128, 185, 0.2); /* Cambio de fondo al pasar el ratón */
+  transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+  color: #fff; /* Cambiar color del texto al pasar el ratón */
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 600px) {
+  .contador,
+  .elije {
+    font-size: 1.2em; /* Ajustar tamaño de fuente para pantallas pequeñas */
+  }
+
+  .vara {
+    height: 60px; /* Ajustar altura de la vara */
+  }
+
+  img {
+    max-width: 90%; /* Ajustar el tamaño de la imagen para pantallas pequeñas */
+    height: auto;
+  }
+}

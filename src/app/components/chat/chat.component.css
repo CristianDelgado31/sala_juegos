@@ -1,0 +1,193 @@
+/* Estilos del ícono del chat */
+.chat-icon {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    background-color: #00FF00; /* Verde brillante */
+    color: black; /* Texto negro para contraste */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    border: 2px solid #000; /* Borde negro */
+}
+
+.chat-icon:hover {
+    background-color: #00CC00; /* Verde más oscuro al pasar el mouse */
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilos del contenedor del chat */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    width: 350px;
+    border-radius: 12px;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #000; /* Fondo negro */
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    z-index: 999;
+    font-family: 'Press Start 2P', cursive; /* Fuente pixel art */
+}
+
+/* Estilos del encabezado del chat */
+.chat-header {
+    background-color: #00FF00; /* Verde brillante */
+    color: black;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Estilos del botón de cerrar */
+.close-chat {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 1.4em;
+}
+
+/* Estilos para los mensajes */
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto; /* Permitir el desplazamiento vertical */
+    background-color: #222; /* Fondo gris oscuro */
+    display: flex;
+    flex-direction: column; /* Alinear mensajes verticalmente */
+}
+
+/* Estilos de los mensajes */
+.message {
+    margin: 6px 0;
+    max-width: 80%; /* Limitar el ancho del mensaje */
+    border-radius: 10px;
+    padding: 12px;
+    position: relative;
+    transition: background-color 0.2s;
+    border: 2px solid #00FF00; /* Borde verde */
+    word-wrap: break-word; /* Permitir el ajuste de línea */
+}
+
+/* Mensajes del usuario */
+.my-message {
+    background-color: #005700; /* Verde más oscuro para el mensaje del usuario */
+    margin-left: auto; /* Alineación a la derecha */
+}
+
+/* Mensajes de otros usuarios */
+.other-message {
+    background-color: #444; /* Color gris oscuro para otros */
+    color: white;
+}
+
+/* Estilos del emisor y texto */
+.sender {
+    font-weight: bold;
+    color: #00FF00; /* Verde brillante */
+    margin-bottom: 5px; /* Espacio entre el nombre del usuario y el mensaje */
+}
+
+.text {
+    display: block;
+    color: white;
+    margin-top: 5px;
+    font-size: 0.8em; /* Tamaño de fuente ajustado */
+    word-wrap: break-word; /* Permitir el ajuste de línea */
+    margin-bottom: 4px;
+}
+
+/* Estilo de la marca de tiempo */
+.timestamp {
+    font-size: 0.5em !important;
+    color: #ffffffa6; /* Texto blanco para mayor contraste */
+    margin-top: 5px; /* Añade un margen superior */
+    text-align: right; /* Alinea el texto a la derecha */
+    display: block; /* Asegura que ocupe todo el ancho */
+}
+
+
+/* Estilos para la entrada de mensaje */
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #333; /* Línea superior */
+    background-color: #1e1e1e; /* Fondo oscuro */
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none; /* Sin borde */
+    background-color: #333; /* Fondo oscuro para la entrada */
+    color: white;
+    border-radius: 20px;
+    font-size: 0.6em;
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente aquí */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #00FF00; /* Botón verde */
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente aquí */
+    font-size: 0.6em;
+}
+
+.chat-input button:hover {
+    background-color: #00CC00; /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05);
+}
+
+/* ESTILOS PARA EL SCROLL PRUEBA */
+/* Scrollbar para navegadores webkit (Chrome, Safari) */
+.chat-messages::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: #25D366; /* Color del thumb */
+    border-radius: 10px; /* Esquinas redondeadas */
+    transition: background-color 0.3s;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background-color: #1ebe5d; /* Color del thumb al pasar el mouse */
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Color de la pista */
+    border-radius: 10px; /* Esquinas redondeadas */
+}
+
+/* Para Firefox */
+.chat-messages {
+    scrollbar-width: thin; /* Hacer el scrollbar más delgado */
+    scrollbar-color: #25D366 #1e1e1e; /* Color del thumb y de la pista */
+}

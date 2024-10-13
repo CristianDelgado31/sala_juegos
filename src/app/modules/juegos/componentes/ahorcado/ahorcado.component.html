@@ -1,0 +1,54 @@
+<div class="main-container">
+    <div class="ahorcado-container">
+        <h1>Juego del Ahorcado</h1>
+
+        <div *ngIf="!juegoIniciado">
+            <h2>Selecciona un Tópico:</h2>
+            <select [(ngModel)]="topicoSeleccionado" (select)="seleccionarPalabra()">
+                <option value="">Elige un Tópico</option>
+                <option value="animales">Animales</option>
+                <option value="frutas">Frutas</option>
+                <option value="paises">Países</option>
+                <option value="deportes">Deportes</option>
+            </select>
+            <button (click)="iniciarJuego()" [disabled]="!topicoSeleccionado">Iniciar Juego</button>
+        </div>
+
+        <div *ngIf="juegoIniciado">
+            <div class="ahorcado-dibujo">
+                <img [src]="getImagen()" alt="Ahorcado" class="muñeco" />
+            </div>
+
+            <div class="palabra">
+                <h2>
+                    <span *ngFor="let letra of palabraActual.split('')" class="letra">
+                        <ng-container *ngIf="letraAdivinada(letra)">{{ letra }}</ng-container>
+                        <ng-container *ngIf="!letraAdivinada(letra)">_</ng-container>
+                    </span>
+                </h2>
+            </div>
+
+            <div class="mensaje" [ngClass]="{'mensaje-victoria': gano, 'mensaje-perdido': perdio}" *ngIf="mensaje" style="text-align: center;">
+                {{ mensaje }}
+            </div>
+
+            <div class="boton-reintentar-container" *ngIf="perdio || gano">
+                <button (click)="reiniciarJuego()" *ngIf="perdio" class="boton-reintentar">Reintentar</button>
+            </div>
+
+            <div class="boton-reintentar-container" *ngIf="volverAJugar">
+                <button (click)="reiniciarJuego()" class="boton-reintentar">Volver a jugar</button>
+            </div>
+
+            <div class="botones-letras">
+                <button 
+                    *ngFor="let letra of alfabeto" 
+                    (click)="adivinarLetra(letra)" 
+                    class="letra-boton" 
+                    [ngClass]="{'letra-correcta': letraAdivinada(letra) && palabraActual.includes(letra), 'letra-incorrecta': letraAdivinada(letra) && !palabraActual.includes(letra)}"
+                    [disabled]="letraAdivinada(letra)">
+                    {{ letra }}
+                </button>
+            </div>
+        </div>
+    </div>

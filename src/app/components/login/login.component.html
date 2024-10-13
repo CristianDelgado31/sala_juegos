@@ -1,0 +1,36 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-title class="card-title">Iniciar Sesión</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" [(ngModel)]="email" name="email" autocomplete="email" required>
+          <mat-error *ngIf="loginForm.controls['email']?.invalid && (loginForm.controls['email']?.touched || loginForm.controls['email']?.dirty)">
+            El email es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" [(ngModel)]="password" name="password" autocomplete="current-password" required>
+          <mat-error *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password']?.touched || loginForm.controls['password']?.dirty)">
+            La contraseña es requerida.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="isLoading" class="submit-button">
+          <span *ngIf="!isLoading">{{ isLoading ? '' : 'Iniciar Sesión' }}</span>
+        </button>
+        <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="80" class="spinner"></mat-progress-spinner>
+        
+      </form>
+
+      <!-- Botones de acceso rápido -->
+      <div class="quick-login-buttons">
+        <button mat-raised-button color="accent" (click)="quickLogin('pepe@gmail.com', 'pepe123')">Login como Pepe</button>
+        <button mat-raised-button color="accent" (click)="quickLogin('romeo@gmail.com', 'Romeo123')">Login como Romeo</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

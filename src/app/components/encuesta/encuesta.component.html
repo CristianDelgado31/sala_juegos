@@ -1,0 +1,96 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Encuesta de Videojuegos</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" required>
+          <div *ngIf="form.get('nombre')?.invalid && (form.get('nombre')?.touched || form.get('nombre')?.dirty)">
+            <small *ngIf="form.get('nombre')?.errors?.['required']">El nombre es requerido.</small>
+            <small *ngIf="form.get('nombre')?.errors?.['pattern']">Solo se permiten letras.</small>
+          </div>
+          
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" required>
+          <div *ngIf="form.get('apellido')?.invalid && (form.get('apellido')?.touched || form.get('apellido')?.dirty)">
+            <small *ngIf="form.get('apellido')?.errors?.['required']">El apellido es requerido.</small>
+            <small *ngIf="form.get('apellido')?.errors?.['pattern']">Solo se permiten letras.</small>
+        </div>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Edad</mat-label>
+          <input matInput type="number" formControlName="edad" required>
+            <div *ngIf="form.get('edad')?.invalid && (form.get('edad')?.touched || form.get('edad')?.dirty)">
+                <small *ngIf="form.get('edad')?.errors?.['required']">La edad es requerida.</small>
+                <small *ngIf="form.get('edad')?.errors?.['min']">Debes ser mayor o igual de 18 años.</small>
+                <small *ngIf="form.get('edad')?.errors?.['max']">Debes ser menor de 100 años.</small>
+            </div>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Número de Teléfono</mat-label>
+          <input matInput formControlName="telefono" required>
+            <div *ngIf="form.get('telefono')?.invalid && (form.get('telefono')?.touched || form.get('telefono')?.dirty)">
+                <small *ngIf="form.get('telefono')?.errors?.['required']">El teléfono es requerido.</small>
+                <small *ngIf="form.get('telefono')?.errors?.['pattern']">Solo se permiten números y hasta 10 caracteres.</small>
+            </div>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>¿Cuál es tu videojuego favorito?</mat-label>
+          <input matInput formControlName="videojuegoFavorito" required>
+            <div *ngIf="form.get('videojuegoFavorito')?.invalid && (form.get('videojuegoFavorito')?.touched || form.get('videojuegoFavorito')?.dirty)">
+                <small *ngIf="form.get('videojuegoFavorito')?.errors?.['required']">El videojuego favorito es requerido.</small>
+                <small *ngIf="form.get('apellido')?.errors?.['pattern']">Solo se permiten letras.</small>
+            </div>
+        </mat-form-field>
+  
+        <div class="full-width">
+          <label>¿Qué plataformas utilizas? (marca todas las que apliquen)</label>
+          <div>
+            <mat-checkbox formControlName="plataformaPC">PC</mat-checkbox>
+          </div>
+          <div>
+            <mat-checkbox formControlName="plataformaConsola">Consola</mat-checkbox>
+          </div>
+          <div>
+            <mat-checkbox formControlName="plataformaMovil">Móvil</mat-checkbox>
+          </div>
+          <div *ngIf="form.errors?.['messageCheckbox']">
+            <small>{{ form.errors?.['messageCheckbox'] }}</small>
+          </div>
+
+        </div>
+  
+        <div class="full-width">
+          <label>¿Qué tipo de videojuegos prefieres?</label>
+          <div>
+            <mat-radio-group formControlName="tipoVideojuego">
+              <mat-radio-button value="accion">Acción</mat-radio-button>
+              <mat-radio-button value="estrategia">Estrategia</mat-radio-button>
+              <mat-radio-button value="rol">Rol</mat-radio-button>
+            </mat-radio-group>
+
+              <div *ngIf="form.errors?.['messageRadioButton']">
+                <small>{{ form.errors?.['messageRadioButton'] }}</small>
+              </div>
+          </div>
+        </div>
+  
+        <button mat-raised-button 
+                type="submit" 
+                color="primary" 
+                class="full-width" 
+                [disabled]="form.invalid"> 
+            Enviar
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

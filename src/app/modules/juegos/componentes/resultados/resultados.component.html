@@ -1,0 +1,51 @@
+<div class="resultados-container">
+    <h1>Resultados Juegos</h1>
+    <div class="spacer"></div>
+  
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="showRanking('ahorcado')">Ranking Ahorcado</button>
+      <button mat-raised-button color="primary" (click)="showRanking('viborita')">Ranking Viborita</button>
+      <button mat-raised-button color="primary" (click)="showRanking('preguntados')">Ranking Preguntados</button>
+      <button mat-raised-button color="primary" (click)="showRanking('mayormenor')">Ranking Mayor Menor</button>
+    </div>
+  
+    <table class="resultados-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Juego</th>
+          <th>Puntos</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultado of resultados$ | async">
+          <td>{{ resultado.username }}</td>
+          <td>{{ resultado.email }}</td>
+          <td>{{ resultado.juego }}</td>
+          <td>{{ resultado.puntos }}</td>
+          <td>{{ convertTimestampToDate(resultado.fecha) | date:'dd/MM/yy HH:mm' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="ranking.length > 0">
+      <h2>Ranking: {{ selectedGame }}</h2>
+      <table class="resultados-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resultado of ranking">
+            <td>{{ resultado.username }}</td>
+            <td>{{ resultado.puntos }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
