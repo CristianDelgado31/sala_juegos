@@ -87,3 +87,26 @@
   cursor: not-allowed; /* Cambia el cursor */
   opacity: 0.5; /* Reduce la opacidad */
 }
+
+.no-preguntas {
+  background-color: #f8d7da; /* Color de fondo suave */
+  color: #721c24; /* Color del texto */
+  border: 1px solid #f5c6cb; /* Borde para destacar */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center; /* Centrar el texto */
+  margin: 20px; /* Espaciado externo */
+  font-family: Arial, sans-serif; /* Fuente */
+  font-size: 18px; /* Tamaño de fuente */
+}
+
+.reiniciar {
+  background-color: #3498db; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 1.2em; /* Tamaño de fuente */
+  cursor: pointer; /* Cambia el cursor */
+  transition: background-color 0.3s; /* Transición suave */
+}

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     background: linear-gradient(to bottom right, #f16a0c, #ffbb33); /* Degradado más atractivo */
 }
 

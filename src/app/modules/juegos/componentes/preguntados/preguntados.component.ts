@@ -1,8 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TemaService } from '../../../../services/preguntados/tema.service';
 import { BanderasService } from '../../../../services/preguntados/banderas.service';
-import { Router } from '@angular/router';
-import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, query, doc, setDoc, Timestamp} from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-preguntados',
@@ -12,150 +11,139 @@ import { Firestore, addDoc, collection, collectionData, where, orderBy, limit, q
 export class PreguntadosComponent implements OnInit, OnDestroy {
   @Input() tema!: string; // Recibe el continente seleccionado como entrada
   preguntaActual: { pregunta: string, opciones: string[], respuestaCorrecta: string, imagen?: string } | null = null;
-  mensaje: string | null = null; // Para mostrar mensajes de respuesta
-  banderaUrl: string | null = null; // URL de la bandera
-  puedeSeleccionar: boolean = true; // Controla si se pueden seleccionar opciones
-  preguntasRespondidas: string[] = []; // Para almacenar preguntas ya respondidas
-  puntaje: number = 0; // Puntaje del usuario
+  mensaje: string | null = null;
+  banderaUrl: string | null = null;
+  puedeSeleccionar: boolean = true;
+  preguntasRespondidas: string[] = [];
+  puntaje: number = 0;
+  paises: any[] = [];
+  vidas: number = 3; // Inicializa con 3 vidas
+  juegoTerminado: boolean = false; // Controla si el juego ha terminado
 
   constructor(private temaService: TemaService, private banderasService: BanderasService, 
-    private router: Router, private firebase : Firestore) {}
+              private firebase: Firestore) {}
 
   ngOnInit() {
-    this.cargarPregunta();
+    this.obtenerPaisesPorContinente();
+  }
+
+  obtenerPaisesPorContinente() {
+    this.banderasService.obtenerBanderasPorContinente(this.tema).subscribe(paises => {
+      this.paises = paises;
+      this.cargarPregunta();
+    });
   }
 
   cargarPregunta() {
-    const preguntasPorContinente: { [key: string]: { pregunta: string, opciones: string[], respuestaCorrecta: string, imagen?: string }[] } = {
-      'Americas': [
-        { pregunta: '¿Cuál es la capital de EE.UU.?', opciones: ['Washington D.C.', 'Nueva York', 'Los Ángeles'], respuestaCorrecta: 'Washington D.C.', imagen: '' },
-        { pregunta: '¿Qué bandera es esta?', opciones: ['Argentina', 'Brasil', 'Chile'], respuestaCorrecta: 'Argentina', imagen: '' }
-      ],
-      'Europe': [
-        { pregunta: '¿Cuál es la capital de Alemania?', opciones: ['Berlín', 'Múnich', 'Frankfurt'], respuestaCorrecta: 'Berlín', imagen: '' },
-        { pregunta: '¿Qué bandera es esta?', opciones: ['Francia', 'Italia', 'España'], respuestaCorrecta: 'Francia', imagen: '' }
-      ],
-      'Asia': [
-        { pregunta: '¿Cuál es la capital de Japón?', opciones: ['Tokio', 'Seúl', 'Beijing'], respuestaCorrecta: 'Tokio', imagen: '' },
-        { pregunta: '¿Qué bandera es esta?', opciones: ['China', 'India', 'Tailandia'], respuestaCorrecta: 'China', imagen: '' }
-      ],
-      'Oceania': [
-        { pregunta: '¿Cuál es la capital de Australia?', opciones: ['Canberra', 'Sídney', 'Melbourne'], respuestaCorrecta: 'Canberra', imagen: '' },
-        { pregunta: '¿Qué bandera es esta?', opciones: ['Nueva Zelanda', 'Fiyi', 'Samoa'], respuestaCorrecta: 'Nueva Zelanda', imagen: '' }
-      ],
-      'Africa': [
-        { pregunta: '¿Cuál es la capital de Sudáfrica?', opciones: ['Pretoria', 'Johannesburgo', 'Ciudad del Cabo'], respuestaCorrecta: 'Pretoria', imagen: '' },
-        { pregunta: '¿Qué bandera es esta?', opciones: ['Nigeria', 'Egipto', 'Sudáfrica'], respuestaCorrecta: 'Nigeria', imagen: '' }
-      ]
+    if (this.preguntasRespondidas.length >= this.paises.length) {
+      this.mensaje = 'Has respondido todas las preguntas. ¡Gracias por jugar!';
+      return;
+    }
+  
+    const randomIndex = Math.floor(Math.random() * this.paises.length);
+    const paisSeleccionado = this.paises[randomIndex];
+  
+    if (this.preguntasRespondidas.includes(paisSeleccionado.name.common)) {
+      this.cargarPregunta(); // Vuelve a intentar cargar una pregunta
+      return;
+    }
+  
+    const nombreEnEspanol = paisSeleccionado.translations?.spa?.common || paisSeleccionado.name.common;
+  
+    this.preguntaActual = {
+      pregunta: `¿Cuál es la capital de ${nombreEnEspanol}?`,
+      opciones: this.generarOpciones(paisSeleccionado), // Cambiado aquí
+      respuestaCorrecta: paisSeleccionado.capital[0],
+      imagen: paisSeleccionado.flags.svg
     };
-
-    const preguntasContinente = preguntasPorContinente[this.tema] || [];
-    const preguntasRestantes = preguntasContinente.filter(p => !this.preguntasRespondidas.includes(p.pregunta));
-
-    if (preguntasRestantes.length > 0) {
-      this.preguntaActual = preguntasRestantes[Math.floor(Math.random() * preguntasRestantes.length)];
-      this.preguntasRespondidas.push(this.preguntaActual.pregunta); // Guarda la pregunta respondida
-      this.cargarBanderaPorPregunta(this.preguntaActual);
-    } else {
-      setTimeout(() => {
-        this.guardarPuntaje(); // Guarda el puntaje al terminar
-        this.temaService.limpiarTema(); // Limpia el tema al salir del componente
-        this.preguntaActual = null; // Limpia la pregunta actual
-      }, 50);
-    }
+  
+    this.preguntasRespondidas.push(nombreEnEspanol);
+    this.banderaUrl = paisSeleccionado.flags.svg;
   }
+  
 
-  cargarBanderaPorPregunta(pregunta: { pregunta: string, opciones: string[], respuestaCorrecta: string }) {
-    // Reinicia banderaUrl al principio
-    this.banderaUrl = null;
+  generarOpciones(paisSeleccionado: any): string[] {
+    const opciones = new Set<string>();
+    const capitalCorrecta = paisSeleccionado.capital[0];
+    // 
 
-    // Decide qué bandera cargar según la respuesta correcta
-    switch (pregunta.respuestaCorrecta) {
-      case 'Washington D.C.':
-        this.cargarBandera('United States');
-        break;
-      case 'Argentina':
-        this.cargarBandera('Argentina');
-        break;
-      case 'Berlín':
-        this.cargarBandera('Germany');
-        break;
-      case 'Francia':
-        this.cargarBandera('France');
-        break;
-      case 'Tokio':
-        this.cargarBandera('Japan');
-        break;
-      case 'China':
-        this.cargarBandera('China');
-        break;
-      case 'Canberra':
-        this.cargarBandera('Australia');
-        break;
-      case 'Nueva Zelanda':
-        this.cargarBandera('New Zealand');
-        break;
-      case 'Pretoria':
-        this.cargarBandera('South Africa');
-        break;
-      case 'Nigeria':
-        this.cargarBandera('Nigeria');
-        break;
-      default:
-        this.banderaUrl = null; // Sin bandera para otras preguntas
-        break;
+    if (capitalCorrecta) {
+      opciones.add(capitalCorrecta); // Añade la capital correcta
     }
-}
-
-
-  cargarBandera(dato: string) {
-    this.banderasService.obtenerBandera(dato).subscribe(
-      (data) => {
-        this.banderaUrl = data[0].flags.svg; // Obtén la URL de la bandera
-      },
-      (error) => {
-        console.error('Error al obtener la bandera:', error);
-        this.banderaUrl = null; // Si hay un error, no mostramos ninguna bandera
+  
+    // Generar opciones aleatorias hasta tener 3
+    while (opciones.size < 3) {
+      const randomIndex = Math.floor(Math.random() * this.paises.length);
+      const paisAleatorio = this.paises[randomIndex];
+  
+      // Asegúrate de que el país no sea el mismo y que la capital no esté ya en opciones
+      if (paisAleatorio.name.common !== paisSeleccionado.name.common && paisAleatorio.capital.length > 0) {
+        opciones.add(paisAleatorio.capital[0]);
       }
-    );
+    }
+  
+    // Convertir el Set a un Array y mezclarlo
+    const opcionesArray = Array.from(opciones);
+    return this.mezclarOpciones(opcionesArray);
   }
+  
+  // Método para mezclar opciones
+  mezclarOpciones(opciones: string[]): string[] {
+    for (let i = opciones.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [opciones[i], opciones[j]] = [opciones[j], opciones[i]]; // Intercambia elementos
+    }
+    return opciones;
+  }
+  
+  
+  
 
   verificarRespuesta(opcion: string) {
-    if (this.preguntaActual && this.puedeSeleccionar) {
-      this.puedeSeleccionar = false; // Desactivar selección
+    if (this.preguntaActual && this.puedeSeleccionar && !this.juegoTerminado) {
+      this.puedeSeleccionar = false;
+
       if (opcion === this.preguntaActual.respuestaCorrecta) {
         this.mensaje = '¡Respuesta Correcta!';
-        this.puntaje += 50; // Sumar puntos por respuesta correcta
-        setTimeout(() => {
-          this.mensaje = null;
-          this.cargarPregunta(); // Cargar nueva pregunta después de unos segundos
-          this.puedeSeleccionar = true; // Activar selección para la siguiente pregunta
-        }, 2000);
+        this.puntaje += 50;
       } else {
-        this.mensaje = 'Respuesta Incorrecta.';
-        setTimeout(() => {
-          this.mensaje = null;
-          this.puedeSeleccionar = true; // Activar selección para la siguiente pregunta
-          this.cargarPregunta();
-        }, 2000);
+        this.vidas -= 1; // Restar una vida
+        this.mensaje = `Respuesta Incorrecta. Te quedan ${this.vidas} vidas.`;
+
+        if (this.vidas === 0) {
+          this.juegoTerminado = true; // Termina el juego
+          this.mensaje = '¡Has perdido! Juego terminado.';
+
+          // Guardar puntaje en la base de datos
+          this.guardarPuntaje();
+        }
       }
+
+      setTimeout(() => {
+        this.mensaje = null;
+        if (!this.juegoTerminado) {
+          this.cargarPregunta();
+        }
+        this.puedeSeleccionar = true;
+      }, 2000);
     }
+  }
+
+  reiniciarJuego() {
+    this.ngOnDestroy();
   }
 
   ngOnDestroy() {
-    this.temaService.limpiarTema(); // Limpia el tema al salir del componente
+    this.temaService.limpiarTema();
   }
 
-  guardarPuntaje() : void {
+  guardarPuntaje(): void {
     const user = JSON.parse(localStorage.getItem('user')!);
-    const username = user.email.split('@')[0]; // Obtener el nombre de usuario
+    const username = user.email.split('@')[0];
     const fecha = Timestamp.fromDate(new Date());
 
-    // Guardar puntaje en la base de datos
     const resultado = { email: user.email, fecha: fecha, juego: 'preguntados', puntos: this.puntaje, username: username };
     const col = collection(this.firebase, 'resultados');
     addDoc(col, resultado);
-
-  }  
-
+  }
 }

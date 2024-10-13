@@ -21,6 +21,8 @@
   </div>
 </div>
 
+<button *ngIf="vidas === 0" (click)="reiniciarJuego()" class="reiniciar">Reiniciar</button>
+
 <div *ngIf="!preguntaActual" class="no-preguntas">
   <p>No hay preguntas disponibles para este continente.</p>
 </div>

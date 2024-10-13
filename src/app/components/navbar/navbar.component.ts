@@ -23,7 +23,7 @@ export class NavbarComponent {
   }
 
   toggleNavbar() {
-    this.isNavbarOpen = !this.isNavbarOpen;
+    this.isNavbarOpen = !this.isNavbarOpen; // Cambiar el estado de la barra de navegación
   }
 
   logOut() {

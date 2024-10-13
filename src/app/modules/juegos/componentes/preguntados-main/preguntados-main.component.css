@@ -5,6 +5,8 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* Asegura que ocupe toda la altura de la vista */
+    padding: 0;
+
 }
 
 .container {
@@ -58,3 +60,5 @@
     background-color: #0056b3; /* Cambiar color al pasar el mouse */
     transform: scale(1.05); /* Escalar ligeramente el botón */
 }
+
+/* Responsive para celular */

@@ -65,11 +65,16 @@ export class EncuestaComponent implements OnInit {
     if (this.encuestaForm.valid) {
       console.log('Formulario válido');
       const encuestaData = { ...this.encuestaForm.value };
+      const user = JSON.parse(localStorage.getItem('user')!);
+      const username = user.email.split('@')[0];
+
       const resultadosRef = collection(this.firestore, 'encuestas');
 
       addDoc(resultadosRef, {
         ...encuestaData,
-        fecha: new Date()
+        fecha: new Date(),
+        email: user.email,
+        username
       }).then(() => {
         console.log('Encuesta guardada exitosamente');
         this.encuestaForm.reset();

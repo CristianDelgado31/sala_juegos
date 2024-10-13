@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       })
       .catch((error) => {
         // console.log('Error:', error);
-        this.errorMessage = 'Usuario no encontrado.'; // Establecer el mensaje de error
+        this.errorMessage = 'email y/o contraseña incorrecto.'; // Establecer el mensaje de error
       })
       .finally(() => {
         this.isLoading = false; // Detiene el spinner al finalizar
